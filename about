@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>DAEDALUS | About</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        /* Copy the same :root, nav, and reveal styles from index.html to keep the theme */
+        :root { --primary: #00f2ff; --secondary: #7000ff; --bg: #050507; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; }
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 10%; display: flex; justify-content: space-between; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+        nav a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { color: white; text-decoration: none; font-size: 0.8rem; opacity: 0.7; }
+
+        /* About Specific: Split Layout */
+        .split-section { display: flex; min-height: 100vh; align-items: center; padding: 100px 10%; gap: 50px; }
+        .content-side { flex: 1; }
+        .image-side { flex: 1; height: 500px; border-radius: 30px; border: 1px solid var(--primary); background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800') center/cover; box-shadow: 0 0 50px rgba(0,242,255,0.1); }
+        h2 { font-size: 3rem; margin-bottom: 20px; color: var(--primary); }
+        p { font-size: 1.1rem; line-height: 1.8; color: #ccc; }
+
+        .reveal { opacity: 0; transform: translateX(-50px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateX(0); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">DAEDALUS</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="split-section">
+        <div class="content-side reveal">
+            <h2>Our Origin</h2>
+            <p>Daedalus began as a vision of the digital future—a space where architecture meets the abstract. We believe that websites shouldn't just be pages; they should be immersive experiences that reflect the precision of tomorrow.</p>
+            <br>
+            <p>Our team specializes in high-fidelity realistic rendering and futuristic user interfaces designed to bridge the gap between human and machine.</p>
+        </div>
+        <div class="image-side reveal" style="transition-delay: 0.3s;"></div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
