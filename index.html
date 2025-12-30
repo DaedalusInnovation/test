@@ -1,282 +1,76 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>DAEDALUS | Futuristic Template</title>
+    <title>DAEDALUS | Home</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    
     <style>
-        /* -----------------------------------------------------------
-           1. VARIABLE CONTROL CENTER (Edit these to change the look)
-        ----------------------------------------------------------- */
+        /* VARIABLE CONTROL - Change these once to update the whole site */
         :root {
-            /* Colors */
-            --primary-accent: #00f2ff;    /* Futuristic Cyan */
-            --secondary-glow: #7000ff;   /* Electric Purple */
-            --bg-dark: #0a0a0c;          /* Deep Black/Grey */
-            --card-bg: rgba(255, 255, 255, 0.05); /* Glassmorphism */
-            --text-main: #e0e0e0;
-            --text-dim: #999;
-            
-            /* Images */
-            --hero-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920');
-            --section-bg-image: url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&q=80&w=1920');
-
-            /* Transitions */
-            --reveal-speed: 0.8s;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg: #050507;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --hero-img: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920');
         }
 
-        /* -----------------------------------------------------------
-           2. CORE STYLES
-        ----------------------------------------------------------- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            background-color: var(--bg-dark); 
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Scroll Reveal Effect Base */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all var(--reveal-speed) ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* -----------------------------------------------------------
-           3. NAVIGATION (Sleek/Glass)
-        ----------------------------------------------------------- */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 1.5rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: 0.5s;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--primary-accent);
-            text-decoration: none;
-        }
-
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 10%; display: flex; justify-content: space-between; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+        nav a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 30px; }
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        nav ul li a:hover { color: var(--primary-accent); }
+        nav ul li a { font-size: 0.8rem; opacity: 0.7; transition: 0.3s; }
+        nav ul li a:hover { opacity: 1; color: var(--primary); }
 
-        /* -----------------------------------------------------------
-           4. HERO SECTION (Full Display)
-        ----------------------------------------------------------- */
-        #hero {
-            height: 100vh;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(10,10,12,0.3), var(--bg-dark)), var(--hero-image);
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
+        /* Hero Scene */
+        #hero { height: 100vh; background: linear-gradient(to bottom, transparent, var(--bg)), var(--hero-img); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero-content h1 { font-size: 5rem; text-transform: uppercase; background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        #hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(0,242,255,0.3));
-        }
+        /* Scroll Reveal Logic */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        #hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; }
-
-        .btn {
-            margin-top: 2rem;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--primary-accent);
-            border: 1px solid var(--primary-accent);
-            text-transform: uppercase;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn:hover {
-            background: var(--primary-accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 30px var(--primary-accent);
-        }
-
-        /* -----------------------------------------------------------
-           5. CONTENT SECTIONS
-        ----------------------------------------------------------- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 5rem 20px; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.4s;
-        }
-
-        .card:hover {
-            border-color: var(--primary-accent);
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.08);
-        }
-
-        .card h3 { color: var(--primary-accent); margin-bottom: 1rem; }
-
-        /* -----------------------------------------------------------
-           6. FOOTER
-        ----------------------------------------------------------- */
-        footer {
-            padding: 4rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-dim);
-        }
+        /* Sections */
+        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: 0.4s; }
+        .card:hover { border-color: var(--primary); transform: scale(1.02); box-shadow: 0 0 30px rgba(0,242,255,0.1); }
     </style>
 </head>
 <body>
-
-    <!-- NAV BAR -->
-    <nav id="navbar">
-        <a href="index.html" class="logo">Daedalus</a>
+    <nav>
+        <a href="index.html">DAEDALUS</a>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- HERO SECTION -->
     <section id="hero">
-        <h1>FUTURE EDGE</h1>
-        <p>A new dimension of digital architectural design and realism.</p>
-        <a href="#about" class="btn">Explore</a>
+        <div class="hero-content reveal">
+            <h1>DAEDALUS</h1>
+            <p>The Future of Architectural Realism</p>
+        </div>
     </section>
 
-    <!-- MAIN CONTENT -->
-    <div class="container" id="about">
-        
-        <!-- SECTION 1: Text Feature -->
-        <section class="reveal">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">The Concept</h2>
-            <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 800px;">
-                This layout is designed for maximum visual impact. Using <strong>Intersection Observer</strong>, 
-                every section you see here pops into existence as you navigate down. 
-                Perfect for showcasing high-end portfolios or tech concepts.
-            </p>
-        </section>
-
-        <!-- SECTION 2: Grid Reveal -->
-        <section class="grid">
-            <div class="card reveal">
-                <h3>01. Realism</h3>
-                <p>Advanced CSS styling techniques create a depth that feels physical yet futuristic.</p>
-            </div>
-            <div class="card reveal" style="transition-delay: 0.2s;">
-                <h3>02. Variable</h3>
-                <p>Change the colors, fonts, and images in seconds using the CSS :root variables.</p>
-            </div>
-            <div class="card reveal" style="transition-delay: 0.4s;">
-                <h3>03. Responsive</h3>
-                <p>Built to look stunning on mobile devices, tablets, and 4K displays alike.</p>
-            </div>
-        </section>
-
-        <!-- SECTION 3: Large Image Section -->
-        <section class="reveal" style="margin-top: 10rem;">
-            <div style="width: 100%; height: 400px; border-radius: 20px; background: var(--section-bg-image); background-size: cover; background-position: center; border: 1px solid var(--primary-accent);"></div>
-            <div style="margin-top: -50px; padding: 2rem; background: var(--bg-dark); width: 80%; border-radius: 0 20px 20px 0; border-left: 4px solid var(--secondary-glow);">
-                <h2>Deep Integration</h2>
-                <p>Everything is modular. Add any content here.</p>
-            </div>
-        </section>
-
+    <div class="container">
+        <div class="grid">
+            <div class="card reveal"><h3>Sleek UI</h3><p>Built with glassmorphism and neon accents.</p></div>
+            <div class="card reveal"><h3>Fast Performance</h3><p>Optimized for GitHub Pages and fast loading.</p></div>
+            <div class="card reveal"><h3>Modular</h3><p>Change variables to completely shift the vibe.</p></div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 DAEDALUS INDUSTRIES. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <!-- -----------------------------------------------------------
-       7. JAVASCRIPT (The Scroll-Reveal Engine)
-    ----------------------------------------------------------- -->
     <script>
-        // 1. Logic for "Pop up" scroll animations
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150; // How many pixels until it pops up
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-
-        window.addEventListener("scroll", reveal);
-
-        // 2. Initial check on load
-        reveal();
-
-        // 3. Navbar change background on scroll
-        window.addEventListener("scroll", function() {
-            const nav = document.getElementById("navbar");
-            if (window.scrollY > 50) {
-                nav.style.background = "rgba(10, 10, 12, 0.95)";
-                nav.style.padding = "1rem 10%";
-            } else {
-                nav.style.background = "transparent";
-                nav.style.padding = "1.5rem 10%";
-            }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
         });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
