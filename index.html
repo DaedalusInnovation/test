@@ -1,76 +1,241 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>DAEDALUS | Home</title>
+    <title>DAEDALUS | Invention Showcase</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <style>
-        /* VARIABLE CONTROL - Change these once to update the whole site */
+        /* -----------------------------------------------------------
+           1. VARIABLE CONTROL CENTER
+        ----------------------------------------------------------- */
         :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --bg: #050507;
+            --primary: #00f2ff;       /* Cyber Cyan */
+            --secondary: #7000ff;     /* Pulse Purple */
+            --bg-dark: #050507;       /* Deep Space */
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
-            --hero-img: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920');
+            
+            /* Images for your Invention Components */
+            --img-comp-1: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800');
+            --img-comp-2: url('https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=800');
+            --img-comp-3: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800');
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow-x: hidden; }
 
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; padding: 20px 10%; display: flex; justify-content: space-between; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
-        nav a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        nav .logo { font-weight: 900; letter-spacing: 2px; text-decoration: none; color: var(--primary); }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 30px; }
-        nav ul li a { font-size: 0.8rem; opacity: 0.7; transition: 0.3s; }
+        nav ul li a { color: white; text-decoration: none; font-size: 0.8rem; opacity: 0.7; transition: 0.3s; }
         nav ul li a:hover { opacity: 1; color: var(--primary); }
 
-        /* Hero Scene */
-        #hero { height: 100vh; background: linear-gradient(to bottom, transparent, var(--bg)), var(--hero-img); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero-content h1 { font-size: 5rem; text-transform: uppercase; background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* -----------------------------------------------------------
+           2. SCROLLYTELLING CORE (Sticky Images & Sliding Text)
+        ----------------------------------------------------------- */
+        
+        /* The Container that holds the sticky content */
+        .scrolly-container {
+            position: relative;
+            width: 100%;
+        }
 
-        /* Scroll Reveal Logic */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* Sticky Center Piece */
+        .sticky-visual {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-        /* Sections */
-        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: 0.4s; }
-        .card:hover { border-color: var(--primary); transform: scale(1.02); box-shadow: 0 0 30px rgba(0,242,255,0.1); }
+        /* Central Image Display */
+        .invention-display {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background-size: cover;
+            background-position: center;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.1);
+            position: relative;
+        }
+
+        /* Scanning Glow Effect */
+        .invention-display::after {
+            content: '';
+            position: absolute;
+            top: -5%; left: -5%; width: 110%; height: 110%;
+            border-radius: 50%;
+            border: 1px solid var(--primary);
+            opacity: 0.2;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.05); opacity: 0.5; } 100% { transform: scale(1); opacity: 0.2; } }
+
+        /* Scroll Content (The Text Blocks) */
+        .step {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glassmorphism Text Boxes */
+        .info-card {
+            max-width: 400px;
+            background: var(--glass);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 1s ease-out;
+        }
+
+        /* Directional Animations */
+        .info-card.left { transform: translateX(-100px); }
+        .info-card.right { transform: translateX(100px); margin-left: auto; }
+
+        /* Active State (Triggered by Scroll) */
+        .step.active .info-card {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step.active .info-card h2 { color: var(--primary); margin-bottom: 1rem; }
+
+        /* -----------------------------------------------------------
+           3. INTRO / HERO
+        ----------------------------------------------------------- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a2e 0%, var(--bg-dark) 100%);
+        }
+
+        #hero h1 { font-size: 5rem; font-weight: 900; letter-spacing: 10px; margin-bottom: 20px; }
+        #hero p { color: var(--primary); letter-spacing: 5px; text-transform: uppercase; }
+
     </style>
 </head>
 <body>
+
     <nav>
-        <a href="index.html">DAEDALUS</a>
+        <a href="index.html" class="logo">DAEDALUS</a>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">Specs</a></li>
+            <li><a href="contact.html">Connect</a></li>
         </ul>
     </nav>
 
+    <!-- HERO START -->
     <section id="hero">
-        <div class="hero-content reveal">
-            <h1>DAEDALUS</h1>
-            <p>The Future of Architectural Realism</p>
-        </div>
+        <h1>PROJECT X</h1>
+        <p>Advanced Component Breakdown</p>
+        <div style="margin-top: 50px; opacity: 0.5;">↓ Scroll to Analyze ↓</div>
     </section>
 
-    <div class="container">
-        <div class="grid">
-            <div class="card reveal"><h3>Sleek UI</h3><p>Built with glassmorphism and neon accents.</p></div>
-            <div class="card reveal"><h3>Fast Performance</h3><p>Optimized for GitHub Pages and fast loading.</p></div>
-            <div class="card reveal"><h3>Modular</h3><p>Change variables to completely shift the vibe.</p></div>
+    <!-- SCROLLYTELLING SECTION -->
+    <div class="scrolly-container">
+        
+        <!-- The Static Center Piece -->
+        <div class="sticky-visual">
+            <div id="central-display" class="invention-display" style="background-image: var(--img-comp-1);"></div>
         </div>
+
+        <!-- Component 1: Comes from the Left -->
+        <div class="step" data-image="var(--img-comp-1)">
+            <div class="info-card left">
+                <h2>01. Neural Core</h2>
+                <p>The primary processor utilizes bio-organic circuits to manage real-time environmental data with zero latency.</p>
+                <ul style="margin-top: 15px; color: var(--primary); font-size: 0.8rem; list-style: none;">
+                    <li>+ 4.2 THz Processing</li>
+                    <li>+ Liquid Nitrogen Cooling</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Component 2: Comes from the Right -->
+        <div class="step" data-image="var(--img-comp-2)">
+            <div class="info-card right">
+                <h2>02. Energy Matrix</h2>
+                <p>Integrated solar-kinetic cells wrap the outer shell, providing infinite power cycles for deep-space operation.</p>
+                <ul style="margin-top: 15px; color: var(--primary); font-size: 0.8rem; list-style: none;">
+                    <li>+ 98% Efficiency</li>
+                    <li>+ Self-Repairing Polymers</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Component 3: Comes from the Left -->
+        <div class="step" data-image="var(--img-comp-3)">
+            <div class="info-card left">
+                <h2>03. Interface Layer</h2>
+                <p>The final user-layer features a holographic field that translates thought-intent into physical action.</p>
+                <ul style="margin-top: 15px; color: var(--primary); font-size: 0.8rem; list-style: none;">
+                    <li>+ Latency: < 1ms</li>
+                    <li>+ Multi-User Sync</li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
+    <footer style="padding: 100px 0; text-align: center; border-top: 1px solid var(--border); background: #000;">
+        <p style="opacity: 0.5;">&copy; 2024 DAEDALUS INDUSTRIES | SECURE DATA TERMINAL</p>
+    </footer>
+
+    <!-- -----------------------------------------------------------
+       4. THE SCROLL ENGINE (JavaScript)
+    ----------------------------------------------------------- -->
     <script>
+        const centralImage = document.getElementById('central-display');
+        const steps = document.querySelectorAll('.step');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.6 // Trigger when 60% of the step is in the middle of the screen
+        };
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
-        });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 1. Activate the text card animation
+                    entry.target.classList.add('active');
+                    
+                    // 2. Change the central image based on the step's data attribute
+                    const newImg = entry.target.getAttribute('data-image');
+                    centralImage.style.backgroundImage = newImg;
+                    
+                    // 3. Optional: Add a subtle rotate or scale effect to the center when swapping
+                    centralImage.style.transform = 'scale(1.05) rotate(5deg)';
+                    setTimeout(() => {
+                        centralImage.style.transform = 'scale(1) rotate(0deg)';
+                    }, 400);
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        steps.forEach(step => observer.observe(step));
     </script>
+
 </body>
 </html>
