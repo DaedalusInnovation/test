@@ -9,20 +9,45 @@
            1. VARIABLE CONTROL CENTER
         ----------------------------------------------------------- */
         :root {
-            --primary: #00f2ff;       /* Cyber Cyan */
-            --secondary: #7000ff;     /* Pulse Purple */
-            --bg-dark: #050507;       /* Deep Space */
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg-dark: #050507;
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
             
-            /* Images for your Invention Components */
+            /* BACKGROUND IMAGE: Falcon flying over mountains at sunrise */
+            --main-bg: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');
+
+            /* Invention Components */
             --img-comp-1: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800');
             --img-comp-2: url('https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=800');
             --img-comp-3: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800');
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow-x: hidden; }
+
+        /* -----------------------------------------------------------
+           2. NEW REALISTIC BACKGROUND ENGINE
+        ----------------------------------------------------------- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: white; 
+            overflow-x: hidden; 
+            background-color: var(--bg-dark); /* Fallback */
+            background-image: var(--main-bg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax Effect */
+        }
+
+        /* Dark overlay to make the futuristic UI pop against the bright sunrise */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(5, 5, 7, 0.4), rgba(5, 5, 7, 0.8));
+            z-index: -1;
+        }
 
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; padding: 20px 10%; display: flex; justify-content: space-between; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
@@ -32,17 +57,9 @@
         nav ul li a { color: white; text-decoration: none; font-size: 0.8rem; opacity: 0.7; transition: 0.3s; }
         nav ul li a:hover { opacity: 1; color: var(--primary); }
 
-        /* -----------------------------------------------------------
-           2. SCROLLYTELLING CORE (Sticky Images & Sliding Text)
-        ----------------------------------------------------------- */
-        
-        /* The Container that holds the sticky content */
-        .scrolly-container {
-            position: relative;
-            width: 100%;
-        }
+        /* Scrollytelling Core */
+        .scrolly-container { position: relative; width: 100%; }
 
-        /* Sticky Center Piece */
         .sticky-visual {
             position: sticky;
             top: 0;
@@ -52,72 +69,38 @@
             align-items: center;
             justify-content: center;
             z-index: 1;
-            overflow: hidden;
         }
 
-        /* Central Image Display */
         .invention-display {
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            border: 2px solid var(--border);
+            border: 2px solid var(--primary);
             background-size: cover;
             background-position: center;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 50px rgba(0, 242, 255, 0.1);
+            transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.3);
             position: relative;
         }
 
-        /* Scanning Glow Effect */
-        .invention-display::after {
-            content: '';
-            position: absolute;
-            top: -5%; left: -5%; width: 110%; height: 110%;
-            border-radius: 50%;
-            border: 1px solid var(--primary);
-            opacity: 0.2;
-            animation: pulse 4s infinite;
-        }
-
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.05); opacity: 0.5; } 100% { transform: scale(1); opacity: 0.2; } }
-
-        /* Scroll Content (The Text Blocks) */
-        .step {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Glassmorphism Text Boxes */
+        .step { height: 100vh; display: flex; align-items: center; padding: 0 10%; position: relative; z-index: 2; }
+        
         .info-card {
             max-width: 400px;
-            background: var(--glass);
+            background: rgba(10, 10, 12, 0.7); /* Slightly darker cards for readability */
             padding: 2.5rem;
             border-radius: 20px;
             border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             opacity: 0;
             transition: 1s ease-out;
         }
 
-        /* Directional Animations */
         .info-card.left { transform: translateX(-100px); }
         .info-card.right { transform: translateX(100px); margin-left: auto; }
+        .step.active .info-card { opacity: 1; transform: translateX(0); }
 
-        /* Active State (Triggered by Scroll) */
-        .step.active .info-card {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .step.active .info-card h2 { color: var(--primary); margin-bottom: 1rem; }
-
-        /* -----------------------------------------------------------
-           3. INTRO / HERO
-        ----------------------------------------------------------- */
+        /* Intro Hero (Now Transparent to show background) */
         #hero {
             height: 100vh;
             display: flex;
@@ -125,12 +108,17 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1a1a2e 0%, var(--bg-dark) 100%);
+            background: transparent;
         }
 
-        #hero h1 { font-size: 5rem; font-weight: 900; letter-spacing: 10px; margin-bottom: 20px; }
-        #hero p { color: var(--primary); letter-spacing: 5px; text-transform: uppercase; }
+        #hero h1 { 
+            font-size: 5rem; 
+            font-weight: 900; 
+            letter-spacing: 10px; 
+            text-shadow: 0 0 20px rgba(0,242,255,0.5); 
+        }
 
+        #hero p { color: var(--primary); letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -147,92 +135,58 @@
     <!-- HERO START -->
     <section id="hero">
         <h1>PROJECT X</h1>
-        <p>Advanced Component Breakdown</p>
-        <div style="margin-top: 50px; opacity: 0.5;">↓ Scroll to Analyze ↓</div>
+        <p>System Online: Analyzing Components</p>
+        <div style="margin-top: 50px; opacity: 0.8; font-size: 0.8rem; letter-spacing: 2px;">DESCEND TO VIEW SPECS</div>
     </section>
 
     <!-- SCROLLYTELLING SECTION -->
     <div class="scrolly-container">
-        
-        <!-- The Static Center Piece -->
         <div class="sticky-visual">
             <div id="central-display" class="invention-display" style="background-image: var(--img-comp-1);"></div>
         </div>
 
-        <!-- Component 1: Comes from the Left -->
         <div class="step" data-image="var(--img-comp-1)">
             <div class="info-card left">
                 <h2>01. Neural Core</h2>
                 <p>The primary processor utilizes bio-organic circuits to manage real-time environmental data with zero latency.</p>
-                <ul style="margin-top: 15px; color: var(--primary); font-size: 0.8rem; list-style: none;">
-                    <li>+ 4.2 THz Processing</li>
-                    <li>+ Liquid Nitrogen Cooling</li>
-                </ul>
             </div>
         </div>
 
-        <!-- Component 2: Comes from the Right -->
         <div class="step" data-image="var(--img-comp-2)">
             <div class="info-card right">
                 <h2>02. Energy Matrix</h2>
                 <p>Integrated solar-kinetic cells wrap the outer shell, providing infinite power cycles for deep-space operation.</p>
-                <ul style="margin-top: 15px; color: var(--primary); font-size: 0.8rem; list-style: none;">
-                    <li>+ 98% Efficiency</li>
-                    <li>+ Self-Repairing Polymers</li>
-                </ul>
             </div>
         </div>
 
-        <!-- Component 3: Comes from the Left -->
         <div class="step" data-image="var(--img-comp-3)">
             <div class="info-card left">
                 <h2>03. Interface Layer</h2>
                 <p>The final user-layer features a holographic field that translates thought-intent into physical action.</p>
-                <ul style="margin-top: 15px; color: var(--primary); font-size: 0.8rem; list-style: none;">
-                    <li>+ Latency: < 1ms</li>
-                    <li>+ Multi-User Sync</li>
-                </ul>
             </div>
         </div>
-
     </div>
 
-    <footer style="padding: 100px 0; text-align: center; border-top: 1px solid var(--border); background: #000;">
+    <footer style="padding: 100px 0; text-align: center; background: rgba(0,0,0,0.8);">
         <p style="opacity: 0.5;">&copy; 2024 DAEDALUS INDUSTRIES | SECURE DATA TERMINAL</p>
     </footer>
 
-    <!-- -----------------------------------------------------------
-       4. THE SCROLL ENGINE (JavaScript)
-    ----------------------------------------------------------- -->
     <script>
         const centralImage = document.getElementById('central-display');
         const steps = document.querySelectorAll('.step');
 
-        const observerOptions = {
-            root: null,
-            threshold: 0.6 // Trigger when 60% of the step is in the middle of the screen
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // 1. Activate the text card animation
                     entry.target.classList.add('active');
-                    
-                    // 2. Change the central image based on the step's data attribute
-                    const newImg = entry.target.getAttribute('data-image');
-                    centralImage.style.backgroundImage = newImg;
-                    
-                    // 3. Optional: Add a subtle rotate or scale effect to the center when swapping
-                    centralImage.style.transform = 'scale(1.05) rotate(5deg)';
-                    setTimeout(() => {
-                        centralImage.style.transform = 'scale(1) rotate(0deg)';
-                    }, 400);
+                    centralImage.style.backgroundImage = entry.target.getAttribute('data-image');
+                    centralImage.style.transform = 'scale(1.05)';
+                    setTimeout(() => centralImage.style.transform = 'scale(1)', 400);
                 } else {
                     entry.target.classList.remove('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.6 });
 
         steps.forEach(step => observer.observe(step));
     </script>
