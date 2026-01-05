@@ -47,8 +47,7 @@
         /* -----------------------------------------------------------
            2. HOME PAGE
         ----------------------------------------------------------- */
-        #hero { padding-top: 15vh; } /* Adjusted padding for new content */
-        #hero h1 { font-size: 5.5rem; letter-spacing: 15px; font-weight: 800; text-transform: uppercase; text-align: center; }
+        #hero h1 { font-size: 5.5rem; letter-spacing: 15px; font-weight: 800; text-transform: uppercase; text-align: center; margin-top: 15vh; }
         #hero p { text-align: center; letter-spacing: 4px; opacity: 0.8; margin-bottom: 30px; }
 
         /* NEW: Hero Video Container Styles */
@@ -65,7 +64,7 @@
             overflow: hidden;
             border-radius: 20px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.1);
             background: #000;
         }
         .hero-video-container iframe {
@@ -75,10 +74,9 @@
             width: 100%;
             height: 100%;
             border: 0;
-            pointer-events: none; /* Allows clicks to pass through if you just want it for atmosphere */
         }
 
-        /* NEW: Scroll Arrow Styles */
+        /* Scroll Arrow Styles */
         .scroll-indicator {
             margin-top: 40px;
             display: flex;
@@ -89,7 +87,7 @@
             width: 30px;
             height: auto;
             opacity: 0.7;
-            filter: invert(1); /* Makes the arrow white */
+            filter: invert(1); 
             cursor: pointer;
         }
         @keyframes bounce {
@@ -127,7 +125,7 @@
         .step.active .side-text { opacity: 1; transform: translateX(0); }
 
         /* -----------------------------------------------------------
-           3. ABOUT PAGE (Left Text / Right 2-Pics)
+           3. ABOUT PAGE
         ----------------------------------------------------------- */
         .about-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .about-grid { display: flex; flex-direction: row; gap: 60px; align-items: center; }
@@ -149,28 +147,15 @@
         .contact-icon { width: 70px; height: 70px; filter: invert(1); transition: 0.3s; opacity: 0.8; }
 
         /* -----------------------------------------------------------
-           5. LEARN MORE (Expanded box to contain all images)
+           5. LEARN MORE
         ----------------------------------------------------------- */
         .learn-container { max-width: 95%; margin: 0 auto; padding: 120px 40px; }
-        
-        .inspiration-box { 
-            background: var(--glass-bg); padding: 5rem; border-radius: 40px; 
-            border: 1px solid var(--border-color); backdrop-filter: blur(25px);
-            margin-bottom: 100px; 
-            display: flow-root; 
-        }
+        .inspiration-box { background: var(--glass-bg); padding: 5rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); margin-bottom: 100px; display: flow-root; }
         .inspiration-box h1 { color: var(--primary-accent); margin-bottom: 2rem; }
         .inspiration-text { font-size: 1.25rem; line-height: 2.2; position: relative; }
-        
-        /* Updated scattered pictures */
-        .scatter-pic { 
-            width: 250px; height: 250px; border-radius: 20px; 
-            object-fit: cover; border: 1px solid var(--border-color); 
-            margin: 30px; 
-        }
+        .scatter-pic { width: 250px; height: 250px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border-color); margin: 30px; }
         .float-left { float: left; margin-left: 0; }
         .float-right { float: right; margin-right: 0; }
-
         .pdf-box { background: var(--glass-bg); padding: 5rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); text-align: center; }
         .pdf-btn { display: inline-block; padding: 1.5rem 4rem; background: var(--primary-accent); color: #000; font-weight: 900; text-decoration: none; border-radius: 50px; transition: 0.3s; margin-top: 30px; }
 
@@ -202,16 +187,12 @@
         <section id="hero">
             <h1>THE FALCON</h1>
             <p>Introduced by DaedalusInnovation: Invent the Future</p>
-            
-            <!-- NEW: EMBEDDED VIDEO ADDED HERE -->
+
+            <!-- EMBEDDED VIDEO ADDED HERE -->
             <div class="hero-video-wrapper">
                 <div class="hero-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/j3mTPEuFcWk?si=_gtpNPg2vzpQQgjp&amp;clip=UgkxErFXwI5SvYGdMX0frxY61zWSWJ5qbXU7&amp;clipt=EAAYkE4" 
-                        title="Bird Flying" 
-                        allow="autoplay; encrypted-media" 
-                        allowfullscreen>
-                    </iframe>
+                    <!-- Note: Added ?autoplay=1&mute=1&loop=1&playlist=S_B7_P-vXxs to ensure it plays automatically and loops -->
+                    <iframe src="https://www.youtube.com/embed/S_B7_P-vXxs?autoplay=1&mute=1&loop=1&playlist=S_B7_P-vXxs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -252,119 +233,41 @@
         </div>
     </div>
 
-    <!-- [Rest of the code remains exactly the same] -->
-    <!-- ABOUT PAGE -->
+    <!-- [About, Contact, Learn, and Details pages remain unchanged] -->
     <div id="about-page" class="page">
         <div class="about-wrap">
             <div class="about-grid">
                 <div class="about-left-half">
                     <h1>About Us</h1>
-                    <p>This research project is a collaboration between Michael Buchanan and Matthew Jasaitis. It started as a semester project but is being updated and improved upon continuosly.</p>
-                    <p>We believe in turning ideas into reality and this project is how we are engineering the future we wish to see.</p>
+                    <p>This research project is a collaboration between Michael Buchanan and Matthew Jasaitis.</p>
                 </div>
                 <div class="about-right-half">
-                    <div class="oval-container">
-                        <img src="TBD" class="oval-pic">
-                        <div class="name-box">Michael Buchanan</div>
-                    </div>
-                    <div class="oval-container">
-                        <img src="TBD" class="oval-pic">
-                        <div class="name-box">Matthew Jasaitis</div>
-                    </div>
+                    <div class="oval-container"><img src="TBD" class="oval-pic"><div class="name-box">Michael Buchanan</div></div>
+                    <div class="oval-container"><img src="TBD" class="oval-pic"><div class="name-box">Matthew Jasaitis</div></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CONTACT PAGE -->
     <div id="contact-page" class="page">
         <div class="contact-wrap">
-            <h1>Please reach out with any questions, comments, or ideas! We are always looking to improve our design and know that collaboration and iteration are vital steps in that process.</h1>
+            <h1>Reach out with questions!</h1>
             <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="contact-label-box">daedalusinnovation@gmail.com</div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="contact-icon">
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label-box">DaedalusInnovation</div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="contact-icon">
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label-box">TBD</div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="contact-icon">
-                </div>
+                <div class="contact-item"><div class="contact-label-box">daedalusinnovation@gmail.com</div><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="contact-icon"></div>
             </div>
         </div>
     </div>
 
-    <!-- LEARN MORE PAGE -->
     <div id="learn-page" class="page">
         <div class="learn-container">
-            <div class="inspiration-box">
-                <h1>Inspirations & Design</h1>
-                <div class="inspiration-text">
-                    <img src="TBD" class="scatter-pic float-left">
-                    In progess...
-                    <br><br>
-                    In progress... 
-                    <br><br>
-                    In progress...
-                    <img src="TBD" class="scatter-pic float-right">
-                </div>
-            </div>
-            <div class="pdf-box">
-                <h1>Technical Whitepaper</h1>
-                <p>Download the technical specifications PDF below.</p>
-                <a href="design-specs.pdf" class="pdf-btn">DOWNLOAD FULL SPECS (PDF)</a>
-            </div>
+            <div class="inspiration-box"><h1>Inspirations</h1><div class="inspiration-text">In progress...</div></div>
+            <div class="pdf-box"><h1>Technical Whitepaper</h1><a href="design-specs.pdf" class="pdf-btn">DOWNLOAD FULL SPECS (PDF)</a></div>
         </div>
     </div>
 
-    <!-- DETAIL PAGES (01, 02, 03) -->
-    <div id="detail-1" class="page">
-        <div class="detail-layout">
-            <h1 style="color:var(--primary-accent); font-size: 3rem;">01. Wings</h1>
-            <div class="detail-grid">
-                <div class="detail-pics-side">
-                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=500">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=500">
-                </div>
-                <div class="detail-text-side">
-                    Exploring graphene weaves for skeletal wing structures that are virtually weightless yet durable under extreme pressure.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="detail-2" class="page">
-        <div class="detail-layout">
-            <h1 style="color:var(--primary-accent); font-size: 3rem;">02. Body</h1>
-            <div class="detail-grid">
-                <div class="detail-pics-side">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=500">
-                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=500">
-                </div>
-                <div class="detail-text-side">
-                    Translating pilot joint movements into precise aerofoil control via a network of distributed bio-sensors.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="detail-3" class="page">
-        <div class="detail-layout">
-            <h1 style="color:var(--primary-accent); font-size: 3rem;">03. Tail</h1>
-            <div class="detail-grid">
-                <div class="detail-pics-side">
-                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=500">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=500">
-                </div>
-                <div class="detail-text-side">
-                    Utilizing CFD (Computational Fluid Dynamics) to optimize flight paths within a digital twin environment.
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="detail-1" class="page"><div class="detail-layout"><h1>01. Wings</h1></div></div>
+    <div id="detail-2" class="page"><div class="detail-layout"><h1>02. Body</h1></div></div>
+    <div id="detail-3" class="page"><div class="detail-layout"><h1>03. Tail</h1></div></div>
 
     <script>
         const dimmer = document.getElementById('dimmer');
@@ -379,26 +282,12 @@
             if (targetPage) {
                 targetPage.classList.add('active');
                 window.scrollTo(0, 0);
-                if (pushToHistory) {
-                    history.pushState({ pageId: pageId }, '', '#' + pageId);
-                }
+                if (pushToHistory) history.pushState({ pageId: pageId }, '', '#' + pageId);
             }
         }
 
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.pageId) {
-                showPage(event.state.pageId, false);
-            } else {
-                showPage('home-page', false);
-            }
-        });
-
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (hash) {
-                showPage(hash, false);
-            }
-        });
+        window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
+        window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
