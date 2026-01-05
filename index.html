@@ -41,38 +41,39 @@
         .page.active { display: block; }
 
         /* -----------------------------------------------------------
-           2. NEW HOME PAGE STRUCTURE
+           2. CINEMATIC HOME PAGE STRUCTURE
         ----------------------------------------------------------- */
         
         /* Hero Section */
         #hero-header { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         #hero-header h1 { font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; max-width: 1000px; padding: 0 20px; }
 
-        /* Centered Falcon Video */
+        /* Falcon Video */
         .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
         .video-box { 
             position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
             border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
             box-shadow: 0 0 50px rgba(0, 212, 255, 0.1);
         }
-        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 
         /* Staggered Secondary Videos */
         .scroll-video-row { width: 100%; padding: 80px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
         .scroll-video-row.active { opacity: 1; transform: translateY(0); }
-        .wide-video { width: 70%; aspect-ratio: 21 / 9; border-radius: 15px; border: 1px solid var(--border-color); overflow: hidden; background: #000; }
+        .wide-video { width: 70%; aspect-ratio: 21 / 9; border-radius: 15px; border: 1px solid var(--border-color); overflow: hidden; background: #000; position: relative; }
+        .wide-video iframe { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; border: 0; pointer-events: none; }
         .left-align { justify-content: flex-start; }
         .right-align { justify-content: flex-end; }
 
         /* Text Interstitials */
         .text-break { text-align: center; padding: 180px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
         .text-break.active { opacity: 1; transform: translateY(0); }
-        .text-break h2 { font-size: 2.8rem; letter-spacing: 5px; line-height: 1.4; font-weight: 400; }
-        .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 3.2rem; }
+        .text-break h2 { font-size: 2.2rem; letter-spacing: 5px; line-height: 1.4; font-weight: 400; }
+        .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.5rem; }
 
         /* Feature Sections (Image with corner boxes) */
         .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 150px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
-        .feature-img { width: 80%; height: 85%; object-fit: cover; border-radius: 40px; border: 1px solid var(--border-color); filter: brightness(0.7); transition: 1s; }
+        .feature-img { width: 80%; height: 85%; object-fit: cover; border-radius: 40px; border: 1px solid var(--border-color); filter: brightness(0.6); transition: 1s; }
         
         .feature-box { 
             position: absolute; width: 320px; padding: 2rem; background: var(--glass-bg); 
@@ -80,7 +81,7 @@
             font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1.5s; z-index: 10;
         }
         .feature-container.active .feature-box { opacity: 1; }
-        .feature-container.active .feature-img { filter: brightness(0.5); }
+        .feature-container.active .feature-img { filter: brightness(0.4); }
 
         .top-left { top: 0; left: 2%; }
         .bottom-right { bottom: 0; right: 2%; }
@@ -92,7 +93,7 @@
         .final-hero h1 { font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); text-transform: uppercase; font-weight: 800; }
 
         /* -----------------------------------------------------------
-           3. ABOUT/CONTACT/LEARN (Kept from Original)
+           3. ABOUT/CONTACT/LEARN
         ----------------------------------------------------------- */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(15px); }
@@ -128,25 +129,26 @@
             </div>
         </div>
 
-        <!-- Staggered Videos -->
-        <!-- 1. Hang Glider -->
+        <!-- STAGGERED HISTORY VIDEOS -->
+        
+        <!-- 1. Hang Glider (Left) -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/HdeH3N4i3rM?autoplay=1&mute=1&loop=1&playlist=HdeH3N4i3rM&controls=0" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/8i_8F-4Wp78?autoplay=1&mute=1&loop=1&playlist=8i_8F-4Wp78&controls=0" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 2. Plane Takeoff -->
+        <!-- 2. Airplane Takeoff (Right) - FIXED ID -->
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TZGpTRrgTAw?autoplay=1&mute=1&loop=1&playlist=TZGpTRrgTAw&controls=0" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/39_S_EunY_o?autoplay=1&mute=1&loop=1&playlist=39_S_EunY_o&controls=0" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 3. Jetson One -->
+        <!-- 3. Jetson One (Left) -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0SREvI_N0mE?autoplay=1&mute=1&loop=1&playlist=0SREvI_N0mE&controls=0" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/0SREvI_N0mE?autoplay=1&mute=1&loop=1&playlist=0SREvI_N0mE&controls=0" frameborder="0"></iframe>
             </div>
         </div>
 
@@ -159,7 +161,7 @@
             <h2>How we can improve:</h2>
         </div>
 
-        <!-- FEATURE 1: MECHANICAL WINGS -->
+        <!-- IMPROVEMENT FEATURE 1: MECHANICAL WINGS -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img" alt="Wings">
             <div class="feature-box top-left">
@@ -172,9 +174,9 @@
             </div>
         </div>
 
-        <!-- FEATURE 2: TURBINE/PARACHUTE -->
+        <!-- IMPROVEMENT FEATURE 2: TURBINE/PARACHUTE -->
         <div class="feature-container reveal">
-            <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img" alt="Turbine">
+            <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img" alt="Propulsion">
             <div class="feature-box top-right">
                 <strong>ELECTRIC PROPULSION</strong><br><br>
                 High-torque electric turbines provide necessary thrust without the bulk of combustion, ensuring a seamless flight experience.
@@ -185,7 +187,7 @@
             </div>
         </div>
 
-        <!-- FEATURE 3: TAIL/CONTROLS -->
+        <!-- IMPROVEMENT FEATURE 3: TAIL/CONTROLS -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img" alt="Controls">
             <div class="feature-box top-left">
@@ -204,7 +206,7 @@
         </section>
     </div>
 
-    <!-- OTHER PAGES -->
+    <!-- SUB PAGES -->
     <div id="about-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
@@ -246,7 +248,7 @@
             dimmer.style.opacity = Math.min(opacity, 0.7);
         });
 
-        // Navigation History Support
+        // Navigation
         function showPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
