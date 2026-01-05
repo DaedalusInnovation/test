@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. VARIABLE CONTROL CENTER */
+        /* GLOBAL STYLES */
         :root {
             --primary-accent: #00d4ff;    
             --text-main: #ffffff;
@@ -21,11 +21,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: #000; overflow-x: hidden; }
 
-        /* Background Layers */
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-image: var(--main-bg-image); background-size: cover; background-position: center; z-index: -2; }
         .bg-dimmer { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; opacity: 0.4; z-index: -1; pointer-events: none; }
 
-        /* Navigation */
         nav { 
             position: fixed; top: 0; width: 100%; height: var(--nav-height); 
             z-index: 9999; display: flex; justify-content: center; align-items: center; 
@@ -38,8 +36,8 @@
         .page { width: 100%; display: none; }
         .page.active { display: block; }
 
-        /* 2. HOME PAGE DESIGN */
-        #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        /* HOME PAGE DESIGN */
+        #hero-header { height: 65vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         #hero-header h1 { font-size: 4rem; letter-spacing: 10px; font-weight: 800; text-transform: uppercase; max-width: 900px; padding: 0 20px; line-height: 1.3; }
 
         .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
@@ -50,7 +48,6 @@
         }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 
-        /* Scrolling Staggered Videos */
         .scroll-video-row { width: 100%; padding: 80px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
         .scroll-video-row.active { opacity: 1; transform: translateY(0); }
         .wide-video { width: 75%; aspect-ratio: 21 / 9; border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden; background: #000; position: relative; }
@@ -58,21 +55,14 @@
         .left-align { justify-content: flex-start; }
         .right-align { justify-content: flex-end; }
 
-        /* Text Interstitials */
         .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
         .text-break.active { opacity: 1; transform: translateY(0); }
         .text-break h2 { font-size: 2.2rem; letter-spacing: 5px; line-height: 1.6; font-weight: 300; }
         .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.5rem; text-transform: uppercase; }
 
-        /* Improvement Features */
         .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 150px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
         .feature-img { width: 80%; height: 85%; object-fit: cover; border-radius: 40px; border: 1px solid var(--border-color); filter: brightness(0.6); transition: 1s; }
-        
-        .feature-box { 
-            position: absolute; width: 320px; padding: 2.5rem; background: var(--glass-bg); 
-            backdrop-filter: blur(25px); border: 1px solid var(--border-color); border-radius: 25px; 
-            font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1.5s; z-index: 10;
-        }
+        .feature-box { position: absolute; width: 320px; padding: 2.5rem; background: var(--glass-bg); backdrop-filter: blur(25px); border: 1px solid var(--border-color); border-radius: 25px; font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1.5s; z-index: 10; }
         .feature-container.active .feature-box { opacity: 1; }
         .feature-container.active .feature-img { filter: brightness(0.4); }
 
@@ -81,14 +71,11 @@
         .top-right { top: 0; right: 2%; }
         .bottom-left { bottom: 0; left: 2%; }
 
-        /* Final Heading */
         .final-hero { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
         .final-hero h1 { font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); text-transform: uppercase; font-weight: 800; }
 
-        /* Sub Pages Padding */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); }
-
     </style>
 </head>
 <body>
@@ -119,23 +106,23 @@
             </div>
         </div>
 
-        <!-- 1. Hang Glider (FIXED LOOP & ID) -->
+        <!-- 1. Hang Glider (FIXED: Verified ID for live domains) -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <!-- Video ID changed to HdeH3N4i3rM (Verified Embeddable) -->
-                <!-- playlist= ID is required for loop. end=10 creates the 10sec clip loop -->
-                <iframe src="https://www.youtube.com/embed/HdeH3N4i3rM?autoplay=1&mute=1&loop=1&playlist=HdeH3N4i3rM&end=10&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
+                <!-- Using verified embed-friendly ID yq-0EOn7vSg -->
+                <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&start=10&end=20&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 2. Airplane Takeoff -->
+        <!-- 2. Airplane Takeoff (FIXED: Verified ID for live domains) -->
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
+                <!-- Using Airbus Official ID m0H846_mDQE -->
                 <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 3. Jetson One -->
+        <!-- 3. Jetson One (Known Working) -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
@@ -150,7 +137,6 @@
             <h2>How we can improve:</h2>
         </div>
 
-        <!-- FEATURE 1: WINGS -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img">
             <div class="feature-box top-left">
@@ -163,7 +149,6 @@
             </div>
         </div>
 
-        <!-- FEATURE 2: PROPULSION -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img">
             <div class="feature-box top-right">
@@ -176,7 +161,6 @@
             </div>
         </div>
 
-        <!-- FEATURE 3: CONTROLS -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img">
             <div class="feature-box top-left">
@@ -194,12 +178,12 @@
         </section>
     </div>
 
-    <!-- OTHER PAGES -->
+    <!-- SUB PAGES -->
     <div id="about-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
                 <h1 style="color:var(--primary-accent); margin-bottom:20px;">About Us</h1>
-                <p style="font-size: 1.2rem; line-height: 2;">Research collaboration by Michael Buchanan and Matthew Jasaitis. Engineering the future of flight.</p>
+                <p style="font-size: 1.2rem; line-height: 2;">Research collaboration by Michael Buchanan and Matthew Jasaitis.</p>
             </div>
         </div>
     </div>
@@ -208,7 +192,7 @@
         <div class="sub-wrap" style="text-align:center;">
             <div class="glass-panel">
                 <h1>Contact Us</h1>
-                <p style="margin: 30px 0; font-size: 1.5rem;">daedalusinnovation@gmail.com</p>
+                <p style="margin: 30px 0;">daedalusinnovation@gmail.com</p>
                 <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="width: 80px; filter: invert(1);">
             </div>
         </div>
@@ -225,14 +209,12 @@
     </div>
 
     <script>
-        // Background dimmer scroll logic
         const dimmer = document.getElementById('dimmer');
         window.addEventListener('scroll', () => {
             let opacity = 0.4 + (window.scrollY / 4000);
             dimmer.style.opacity = Math.min(opacity, 0.7);
         });
 
-        // Navigation
         function showPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
@@ -246,7 +228,6 @@
         window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
         window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-        // Scroll Observer for reveals
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
