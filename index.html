@@ -41,14 +41,12 @@
         .page.active { display: block; }
 
         /* -----------------------------------------------------------
-           2. CINEMATIC HOME PAGE STRUCTURE
+           2. CINEMATIC HOME PAGE
         ----------------------------------------------------------- */
         
-        /* Hero Section */
         #hero-header { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         #hero-header h1 { font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; max-width: 1000px; padding: 0 20px; }
 
-        /* Falcon Video */
         .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
         .video-box { 
             position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
@@ -57,21 +55,20 @@
         }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 
-        /* Staggered Secondary Videos */
+        /* Horizontal Scrolling Videos */
         .scroll-video-row { width: 100%; padding: 80px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
         .scroll-video-row.active { opacity: 1; transform: translateY(0); }
         .wide-video { width: 70%; aspect-ratio: 21 / 9; border-radius: 15px; border: 1px solid var(--border-color); overflow: hidden; background: #000; position: relative; }
-        .wide-video iframe { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; border: 0; pointer-events: none; }
+        .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
         .left-align { justify-content: flex-start; }
         .right-align { justify-content: flex-end; }
 
-        /* Text Interstitials */
         .text-break { text-align: center; padding: 180px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
         .text-break.active { opacity: 1; transform: translateY(0); }
         .text-break h2 { font-size: 2.2rem; letter-spacing: 5px; line-height: 1.4; font-weight: 400; }
         .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.5rem; }
 
-        /* Feature Sections (Image with corner boxes) */
+        /* Feature Sections */
         .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 150px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
         .feature-img { width: 80%; height: 85%; object-fit: cover; border-radius: 40px; border: 1px solid var(--border-color); filter: brightness(0.6); transition: 1s; }
         
@@ -88,12 +85,11 @@
         .top-right { top: 0; right: 2%; }
         .bottom-left { bottom: 0; left: 2%; }
 
-        /* Final Hero Text */
         .final-hero { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         .final-hero h1 { font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); text-transform: uppercase; font-weight: 800; }
 
         /* -----------------------------------------------------------
-           3. ABOUT/CONTACT/LEARN
+           3. SUB PAGES
         ----------------------------------------------------------- */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(15px); }
@@ -117,42 +113,38 @@
     <!-- HOME PAGE -->
     <div id="home-page" class="page active">
         
-        <!-- Hero Header -->
         <section id="hero-header">
             <h1>Humans have always dreamed of flight</h1>
         </section>
 
-        <!-- Main Falcon Video -->
+        <!-- Main Video (Falcon) -->
         <div class="main-video-section">
             <div class="video-box">
-                <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             </div>
         </div>
 
-        <!-- STAGGERED HISTORY VIDEOS -->
-        
         <!-- 1. Hang Glider (Left) -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <iframe src="https://www.youtube.com/embed/8i_8F-4Wp78?autoplay=1&mute=1&loop=1&playlist=8i_8F-4Wp78&controls=0" frameborder="0"></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/Y_n6p-xKmqo?autoplay=1&mute=1&loop=1&playlist=Y_n6p-xKmqo&controls=0&modestbranding=1" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 2. Airplane Takeoff (Right) - FIXED ID -->
+        <!-- 2. Airplane Takeoff (Right) -->
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
-                <iframe src="https://www.youtube.com/embed/39_S_EunY_o?autoplay=1&mute=1&loop=1&playlist=39_S_EunY_o&controls=0" frameborder="0"></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/M_Lp5Vp-O9w?autoplay=1&mute=1&loop=1&playlist=M_Lp5Vp-O9w&controls=0&modestbranding=1" frameborder="0"></iframe>
             </div>
         </div>
 
         <!-- 3. Jetson One (Left) -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <iframe src="https://www.youtube.com/embed/0SREvI_N0mE?autoplay=1&mute=1&loop=1&playlist=0SREvI_N0mE&controls=0" frameborder="0"></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/OazFiIzhqwA?autoplay=1&mute=1&loop=1&playlist=OazFiIzhqwA&controls=0&modestbranding=1" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- Text Breaks -->
         <div class="text-break reveal">
             <h2>These are amazing feats of engineering, yet they still fall short of the true, unencumbered flight experience humans desire.</h2>
         </div>
@@ -200,7 +192,6 @@
             </div>
         </div>
 
-        <!-- Final Heading -->
         <section class="final-hero reveal">
             <h1>Putting these together, the FALCON is made.</h1>
         </section>
@@ -211,7 +202,7 @@
         <div class="sub-wrap">
             <div class="glass-panel">
                 <h1 style="color:var(--primary-accent); margin-bottom:20px;">About Us</h1>
-                <p style="font-size: 1.2rem; line-height: 2;">This research project is a collaboration between Michael Buchanan and Matthew Jasaitis. We believe in turning ideas into reality and this project is how we are engineering the future we wish to see.</p>
+                <p style="font-size: 1.2rem; line-height: 2;">This research project is a collaboration between Michael Buchanan and Matthew Jasaitis. We believe in turning ideas into reality.</p>
                 <div style="display: flex; gap: 40px; margin-top: 50px;">
                     <div style="text-align:center;"><img src="TBD" class="oval-pic"><p>Michael Buchanan</p></div>
                     <div style="text-align:center;"><img src="TBD" class="oval-pic"><p>Matthew Jasaitis</p></div>
@@ -241,14 +232,12 @@
     </div>
 
     <script>
-        // Smooth background dimmer
         const dimmer = document.getElementById('dimmer');
         window.addEventListener('scroll', () => {
             let opacity = 0.3 + (window.scrollY / 4000);
             dimmer.style.opacity = Math.min(opacity, 0.7);
         });
 
-        // Navigation
         function showPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
@@ -262,7 +251,6 @@
         window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
         window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-        // Scroll Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
