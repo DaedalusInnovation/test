@@ -13,14 +13,10 @@
         :root {
             --primary-accent: #00d4ff;    
             --text-main: #ffffff;
-            --glass-bg: rgba(0, 0, 0, 0.25); 
+            --glass-bg: rgba(0, 0, 0, 0.4); 
             --border-color: rgba(255, 255, 255, 0.15);
             --main-bg-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');
-
-            --transition-speed: 0.5s;      
-            --box-width: 500px;            
-            --box-min-height: 450px;       
-            --edge-margin: 7%;             
+            --transition-speed: 0.8s;      
             --nav-height: 80px;
         }
 
@@ -29,144 +25,78 @@
 
         /* Background Engine */
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-image: var(--main-bg-image); background-size: cover; background-position: center; z-index: -2; }
-        .bg-dimmer { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; opacity: 0.2; z-index: -1; pointer-events: none; }
+        .bg-dimmer { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; opacity: 0.3; z-index: -1; pointer-events: none; }
 
         /* Navigation */
         nav { 
             position: fixed; top: 0; width: 100%; height: var(--nav-height); 
             z-index: 9999; display: flex; justify-content: center; align-items: center; 
-            background: rgba(0,0,0,0.25); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); 
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); 
         }
         nav ul { display: flex; list-style: none; gap: 45px; align-items: center; }
         nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; }
         nav ul li a:hover { color: var(--primary-accent); }
 
-        .page { min-height: 100vh; width: 100%; display: none; }
+        .page { width: 100%; display: none; }
         .page.active { display: block; }
 
         /* -----------------------------------------------------------
-           2. HOME PAGE
+           2. NEW HOME PAGE STRUCTURE
         ----------------------------------------------------------- */
-        #hero { padding-top: 12vh; }
-        #hero h1 { font-size: 5.5rem; letter-spacing: 15px; font-weight: 800; text-transform: uppercase; text-align: center; }
-        #hero p { text-align: center; letter-spacing: 4px; opacity: 0.8; margin-bottom: 40px; }
+        
+        /* Hero Section */
+        #hero-header { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        #hero-header h1 { font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; max-width: 1000px; padding: 0 20px; }
 
-        /* Hero Video Container */
-        .hero-video-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Centered Falcon Video */
+        .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
+        .video-box { 
+            position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
+            border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.1);
         }
-        .hero-video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.15);
-            background: #000;
-        }
-        .hero-video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Scroll Arrow Styles */
-        .scroll-indicator {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            animation: bounce 2s infinite;
-        }
-        .scroll-indicator img {
-            width: 30px;
-            height: auto;
-            opacity: 0.7;
-            filter: invert(1); 
-            cursor: pointer;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
+        /* Staggered Secondary Videos */
+        .scroll-video-row { width: 100%; padding: 80px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
+        .scroll-video-row.active { opacity: 1; transform: translateY(0); }
+        .wide-video { width: 70%; aspect-ratio: 21 / 9; border-radius: 15px; border: 1px solid var(--border-color); overflow: hidden; background: #000; }
+        .left-align { justify-content: flex-start; }
+        .right-align { justify-content: flex-end; }
 
-        .vision-box { 
-            max-width: 850px; padding: 4.5rem; background: var(--glass-bg); 
-            border: 1px solid var(--border-color); border-radius: 20px; 
-            backdrop-filter: blur(20px); text-align: center; 
-            margin: 60vh auto 40vh auto; 
-            opacity: 0; transform: translateY(30px); transition: var(--transition-speed); 
-        }
-        .vision-box.active { opacity: 1; transform: translateY(0); }
-        .vision-box h2 { font-size: 3rem; margin-bottom: 1.5rem; color: var(--primary-accent); letter-spacing: 3px; }
+        /* Text Interstitials */
+        .text-break { text-align: center; padding: 180px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
+        .text-break.active { opacity: 1; transform: translateY(0); }
+        .text-break h2 { font-size: 2.8rem; letter-spacing: 5px; line-height: 1.4; font-weight: 400; }
+        .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 3.2rem; }
 
-        .sticky-visual { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-        .showcase-img { width: 700px; height: 450px; border-radius: 40px; object-fit: cover; border: 1px solid var(--border-color); position: absolute; opacity: 0; transition: var(--transition-speed); }
-        .showcase-img.visible { opacity: 1; }
-
-        .step { height: 100vh; display: flex; align-items: center; position: relative; z-index: 10; width: 100%; }
-        .side-text {
-            width: var(--box-width); min-height: var(--box-min-height);
-            background: var(--glass-bg); padding: 3.5rem; border-radius: 30px;
-            backdrop-filter: blur(25px); border: 1px solid var(--border-color);
-            opacity: 0; transition: var(--transition-speed);
-            display: flex; flex-direction: column; justify-content: center;
+        /* Feature Sections (Image with corner boxes) */
+        .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 150px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
+        .feature-img { width: 80%; height: 85%; object-fit: cover; border-radius: 40px; border: 1px solid var(--border-color); filter: brightness(0.7); transition: 1s; }
+        
+        .feature-box { 
+            position: absolute; width: 320px; padding: 2rem; background: var(--glass-bg); 
+            backdrop-filter: blur(25px); border: 1px solid var(--border-color); border-radius: 25px; 
+            font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1.5s; z-index: 10;
         }
-        .side-text h3 { color: var(--primary-accent); cursor: pointer; margin-bottom: 20px; font-size: 2rem; text-decoration: underline; text-decoration-color: transparent; transition: 0.3s; }
-        .side-text h3:hover { text-decoration-color: var(--primary-accent); }
-        .left-box { transform: translateX(-150px); margin-left: var(--edge-margin); }
-        .right-box { transform: translateX(150px); margin-right: var(--edge-margin); margin-left: auto; }
-        .step.active .side-text { opacity: 1; transform: translateX(0); }
+        .feature-container.active .feature-box { opacity: 1; }
+        .feature-container.active .feature-img { filter: brightness(0.5); }
+
+        .top-left { top: 0; left: 2%; }
+        .bottom-right { bottom: 0; right: 2%; }
+        .top-right { top: 0; right: 2%; }
+        .bottom-left { bottom: 0; left: 2%; }
+
+        /* Final Hero Text */
+        .final-hero { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .final-hero h1 { font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); text-transform: uppercase; font-weight: 800; }
 
         /* -----------------------------------------------------------
-           3. ABOUT PAGE
+           3. ABOUT/CONTACT/LEARN (Kept from Original)
         ----------------------------------------------------------- */
-        .about-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
-        .about-grid { display: flex; flex-direction: row; gap: 60px; align-items: center; }
-        .about-left-half { flex: 1; background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(15px); }
-        .about-left-half h1 { color: var(--primary-accent); font-size: 3rem; margin-bottom: 1.5rem; }
-        .about-left-half p { font-size: 1.2rem; line-height: 2; margin-bottom: 1.5rem; }
-        .about-right-half { flex: 1; display: flex; flex-direction: row; gap: 20px; justify-content: center; }
-        .oval-container { text-align: center; }
+        .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
+        .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(15px); }
         .oval-pic { width: 240px; height: 320px; border-radius: 120px; object-fit: cover; border: 2.5px solid var(--primary-accent); }
-        .name-box { margin-top: 15px; background: rgba(0,0,0,0.6); padding: 8px 20px; border-radius: 50px; border: 1px solid var(--border-color); font-weight: 800; font-size: 0.8rem; letter-spacing: 1px; }
-
-        /* -----------------------------------------------------------
-           4. CONTACT PAGE
-        ----------------------------------------------------------- */
-        .contact-wrap { text-align: center; padding: 150px 10%; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 60px; margin-top: 60px; }
-        .contact-item { display: flex; flex-direction: column; align-items: center; }
-        .contact-label-box { background: var(--glass-bg); padding: 8px 25px; border-radius: 5px; border: 1px solid var(--border-color); margin-bottom: 15px; font-size: 0.8rem; font-weight: 800; color: var(--primary-accent); }
-        .contact-icon { width: 70px; height: 70px; filter: invert(1); transition: 0.3s; opacity: 0.8; }
-
-        /* -----------------------------------------------------------
-           5. LEARN MORE
-        ----------------------------------------------------------- */
-        .learn-container { max-width: 95%; margin: 0 auto; padding: 120px 40px; }
-        .inspiration-box { background: var(--glass-bg); padding: 5rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); margin-bottom: 100px; display: flow-root; }
-        .inspiration-box h1 { color: var(--primary-accent); margin-bottom: 2rem; }
-        .inspiration-text { font-size: 1.25rem; line-height: 2.2; position: relative; }
-        .scatter-pic { width: 250px; height: 250px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border-color); margin: 30px; }
-        .float-left { float: left; margin-left: 0; }
-        .float-right { float: right; margin-right: 0; }
-        .pdf-box { background: var(--glass-bg); padding: 5rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); text-align: center; }
-        .pdf-btn { display: inline-block; padding: 1.5rem 4rem; background: var(--primary-accent); color: #000; font-weight: 900; text-decoration: none; border-radius: 50px; transition: 0.3s; margin-top: 30px; }
-
-        /* -----------------------------------------------------------
-           6. DETAIL PAGES (01, 02, 03)
-        ----------------------------------------------------------- */
-        .detail-layout { padding: 150px 10%; display: flex; flex-direction: column; align-items: center; }
-        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1200px; margin-top: 50px; }
-        .detail-pics-side img { width: 100%; height: 320px; border-radius: 30px; object-fit: cover; border: 1px solid var(--border-color); margin-bottom: 30px; }
-        .detail-text-side { background: var(--glass-bg); padding: 4rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); line-height: 2; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -185,214 +115,161 @@
 
     <!-- HOME PAGE -->
     <div id="home-page" class="page active">
-        <section id="hero">
-            <h1>THE FALCON</h1>
-            <p>Introduced by DaedalusInnovation: Invent the Future</p>
-
-            <!-- CINEMATIC VIDEO EMBED -->
-            <div class="hero-video-wrapper">
-                <div class="hero-video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0&iv_load_policy=3" 
-                        title="Peregrine Falcon Flight" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-
-            <div class="scroll-indicator">
-                <img src="https://cdn-icons-png.flaticon.com/512/2985/2985149.png" alt="Scroll Down" onclick="window.scrollBy({top: 600, behavior: 'smooth'})">
-            </div>
-        </section>
         
-        <div class="vision-box reveal">
-            <h2>OUR VISION</h2>
-            <p>We believe that humans can experience true fight and share the skies with our avian relatives. Other methods of human flight have come up short in many apsects of the flight experience. Now we take a leap forward into immersion and control with the FALCON.</p>
+        <!-- Hero Header -->
+        <section id="hero-header">
+            <h1>Humans have always dreamed of flight</h1>
+        </section>
+
+        <!-- Main Falcon Video -->
+        <div class="main-video-section">
+            <div class="video-box">
+                <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
 
-        <div class="scrolly-container">
-            <div class="sticky-visual">
-                <img src="images/output.jpg" id="img1" class="showcase-img visible">
-                <img src="images/output (2).jpg" id="img2" class="showcase-img">
-                <img src="images/output (3).jpg" id="img3" class="showcase-img">
-            </div>
-            <div class="step" data-img="img1">
-                <div class="side-text left-box">
-                    <h3 onclick="showPage('detail-1')">1. Wings</h3>
-                    <p>Our wing design is centered around a morphing ability. By changing shape mid flight we optimize the FALCON's aerodyanmics for the desired flight position. Click to learn more.</p>
-                </div>
-            </div>
-            <div class="step" data-img="img2">
-                <div class="side-text right-box">
-                    <h3 onclick="showPage('detail-2')">2. Body</h3>
-                    <p>The body of the FALCON combines an electric powered motor and safety features while ensuring a comfartable and seemless flight experience. Click to learn more.</p>
-                </div>
-            </div>
-            <div class="step" data-img="img3">
-                <div class="side-text left-box">
-                    <h3 onclick="showPage('detail-3')">3. Tail</h3>
-                    <p>Our tail design maintains effcient and controlled flgith for the FALCON. It balances the entire suit and provides precise controls to move in any direction. Click to learn more.</p>
-                </div>
+        <!-- Staggered Videos -->
+        <!-- 1. Hang Glider -->
+        <div class="scroll-video-row left-align reveal">
+            <div class="wide-video">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/HdeH3N4i3rM?autoplay=1&mute=1&loop=1&playlist=HdeH3N4i3rM&controls=0" frameborder="0"></iframe>
             </div>
         </div>
+
+        <!-- 2. Plane Takeoff -->
+        <div class="scroll-video-row right-align reveal">
+            <div class="wide-video">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TZGpTRrgTAw?autoplay=1&mute=1&loop=1&playlist=TZGpTRrgTAw&controls=0" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 3. Jetson One -->
+        <div class="scroll-video-row left-align reveal">
+            <div class="wide-video">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0SREvI_N0mE?autoplay=1&mute=1&loop=1&playlist=0SREvI_N0mE&controls=0" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- Text Breaks -->
+        <div class="text-break reveal">
+            <h2>These are amazing feats of engineering, yet they still fall short of the true, unencumbered flight experience humans desire.</h2>
+        </div>
+
+        <div class="text-break intro-section reveal">
+            <h2>How we can improve:</h2>
+        </div>
+
+        <!-- FEATURE 1: MECHANICAL WINGS -->
+        <div class="feature-container reveal">
+            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img" alt="Wings">
+            <div class="feature-box top-left">
+                <strong>MORPHING GEOMETRY</strong><br><br>
+                By changing shape mid-flight, we optimize aerodynamics for the desired position, mimicking the precision of avian relatives.
+            </div>
+            <div class="feature-box bottom-right">
+                <strong>ULTRA-LIGHTWEIGHT</strong><br><br>
+                Our skeletal structures use advanced composites that remain virtually weightless while sustaining extreme air pressure.
+            </div>
+        </div>
+
+        <!-- FEATURE 2: TURBINE/PARACHUTE -->
+        <div class="feature-container reveal">
+            <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img" alt="Turbine">
+            <div class="feature-box top-right">
+                <strong>ELECTRIC PROPULSION</strong><br><br>
+                High-torque electric turbines provide necessary thrust without the bulk of combustion, ensuring a seamless flight experience.
+            </div>
+            <div class="feature-box bottom-left">
+                <strong>SAFETY INTEGRATION</strong><br><br>
+                Integrated ballistic parachute systems deploy automatically in milliseconds, providing an absolute safety net for the pilot.
+            </div>
+        </div>
+
+        <!-- FEATURE 3: TAIL/CONTROLS -->
+        <div class="feature-container reveal">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img" alt="Controls">
+            <div class="feature-box top-left">
+                <strong>STABILIZED FLIGHT</strong><br><br>
+                The tail design maintains efficiency and controlled flight, balancing the entire suit and providing precise multi-directional movement.
+            </div>
+            <div class="feature-box bottom-right">
+                <strong>INTUITIVE BIO-LINK</strong><br><br>
+                Translating pilot joint movements into precise aerofoil control via a network of distributed bio-sensors.
+            </div>
+        </div>
+
+        <!-- Final Heading -->
+        <section class="final-hero reveal">
+            <h1>Putting these together, the FALCON is made.</h1>
+        </section>
     </div>
 
-    <!-- ABOUT PAGE -->
+    <!-- OTHER PAGES -->
     <div id="about-page" class="page">
-        <div class="about-wrap">
-            <div class="about-grid">
-                <div class="about-left-half">
-                    <h1>About Us</h1>
-                    <p>This research project is a collaboration between Michael Buchanan and Matthew Jasaitis. It started as a semester project but is being updated and improved upon continuosly.</p>
-                    <p>We believe in turning ideas into reality and this project is how we are engineering the future we wish to see.</p>
-                </div>
-                <div class="about-right-half">
-                    <div class="oval-container">
-                        <img src="TBD" class="oval-pic">
-                        <div class="name-box">Michael Buchanan</div>
-                    </div>
-                    <div class="oval-container">
-                        <img src="TBD" class="oval-pic">
-                        <div class="name-box">Matthew Jasaitis</div>
-                    </div>
+        <div class="sub-wrap">
+            <div class="glass-panel">
+                <h1 style="color:var(--primary-accent); margin-bottom:20px;">About Us</h1>
+                <p style="font-size: 1.2rem; line-height: 2;">This research project is a collaboration between Michael Buchanan and Matthew Jasaitis. We believe in turning ideas into reality and this project is how we are engineering the future we wish to see.</p>
+                <div style="display: flex; gap: 40px; margin-top: 50px;">
+                    <div style="text-align:center;"><img src="TBD" class="oval-pic"><p>Michael Buchanan</p></div>
+                    <div style="text-align:center;"><img src="TBD" class="oval-pic"><p>Matthew Jasaitis</p></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CONTACT PAGE -->
     <div id="contact-page" class="page">
-        <div class="contact-wrap">
-            <h1>Reach out with any questions, comments, or ideas!</h1>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="contact-label-box">daedalusinnovation@gmail.com</div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="contact-icon">
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label-box">DaedalusInnovation</div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="contact-icon">
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label-box">TBD</div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="contact-icon">
-                </div>
+        <div class="sub-wrap" style="text-align:center;">
+            <div class="glass-panel">
+                <h1>Contact Us</h1>
+                <p style="margin: 30px 0;">daedalusinnovation@gmail.com</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="width: 80px; filter: invert(1);">
             </div>
         </div>
     </div>
 
-    <!-- LEARN MORE PAGE -->
     <div id="learn-page" class="page">
-        <div class="learn-container">
-            <div class="inspiration-box">
-                <h1>Inspirations & Design</h1>
-                <div class="inspiration-text">
-                    <img src="TBD" class="scatter-pic float-left">
-                    In progess...
-                    <img src="TBD" class="scatter-pic float-right">
-                </div>
-            </div>
-            <div class="pdf-box">
+        <div class="sub-wrap">
+            <div class="glass-panel">
                 <h1>Technical Whitepaper</h1>
-                <p>Download the technical specifications PDF below.</p>
-                <a href="design-specs.pdf" class="pdf-btn">DOWNLOAD FULL SPECS (PDF)</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- DETAIL PAGES -->
-    <div id="detail-1" class="page">
-        <div class="detail-layout">
-            <h1 style="color:var(--primary-accent); font-size: 3rem;">01. Wings</h1>
-            <div class="detail-grid">
-                <div class="detail-pics-side">
-                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=500">
-                </div>
-                <div class="detail-text-side">
-                    Exploring graphene weaves for skeletal wing structures that are virtually weightless yet durable under extreme pressure.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="detail-2" class="page">
-        <div class="detail-layout">
-            <h1 style="color:var(--primary-accent); font-size: 3rem;">02. Body</h1>
-            <div class="detail-grid">
-                <div class="detail-pics-side">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=500">
-                </div>
-                <div class="detail-text-side">
-                    Translating pilot joint movements into precise aerofoil control via a network of distributed bio-sensors.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="detail-3" class="page">
-        <div class="detail-layout">
-            <h1 style="color:var(--primary-accent); font-size: 3rem;">03. Tail</h1>
-            <div class="detail-grid">
-                <div class="detail-pics-side">
-                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=500">
-                </div>
-                <div class="detail-text-side">
-                    Utilizing CFD (Computational Fluid Dynamics) to optimize flight paths within a digital twin environment.
-                </div>
+                <p style="margin: 20px 0;">Download the full design specifications below.</p>
+                <a href="#" style="background:var(--primary-accent); color:#000; padding: 20px 40px; text-decoration:none; font-weight:800; border-radius:50px; display:inline-block;">DOWNLOAD PDF</a>
             </div>
         </div>
     </div>
 
     <script>
+        // Smooth background dimmer
         const dimmer = document.getElementById('dimmer');
         window.addEventListener('scroll', () => {
-            let opacity = 0.2 + (window.scrollY / 2500);
-            dimmer.style.opacity = Math.min(opacity, 0.50);
+            let opacity = 0.3 + (window.scrollY / 4000);
+            dimmer.style.opacity = Math.min(opacity, 0.7);
         });
 
+        // Navigation History Support
         function showPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
                 window.scrollTo(0, 0);
-                if (pushToHistory) {
-                    history.pushState({ pageId: pageId }, '', '#' + pageId);
-                }
+                if (pushToHistory) history.pushState({ pageId: pageId }, '', '#' + pageId);
             }
         }
 
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.pageId) {
-                showPage(event.state.pageId, false);
-            } else {
-                showPage('home-page', false);
-            }
-        });
+        window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
+        window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (hash) {
-                showPage(hash, false);
-            }
-        });
-
+        // Scroll Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    if (entry.target.classList.contains('step')) {
-                        const imgId = entry.target.getAttribute('data-img');
-                        document.querySelectorAll('.showcase-img').forEach(img => img.classList.remove('visible'));
-                        document.getElementById(imgId).classList.add('visible');
-                    }
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.15 });
 
-        document.querySelectorAll('.step, .reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
