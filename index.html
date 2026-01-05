@@ -142,4 +142,257 @@
            4. CONTACT PAGE
         ----------------------------------------------------------- */
         .contact-wrap { text-align: center; padding: 150px 10%; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 6
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 60px; margin-top: 60px; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; }
+        .contact-label-box { background: var(--glass-bg); padding: 8px 25px; border-radius: 5px; border: 1px solid var(--border-color); margin-bottom: 15px; font-size: 0.8rem; font-weight: 800; color: var(--primary-accent); }
+        .contact-icon { width: 70px; height: 70px; filter: invert(1); transition: 0.3s; opacity: 0.8; }
+
+        /* -----------------------------------------------------------
+           5. LEARN MORE
+        ----------------------------------------------------------- */
+        .learn-container { max-width: 95%; margin: 0 auto; padding: 120px 40px; }
+        .inspiration-box { background: var(--glass-bg); padding: 5rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); margin-bottom: 100px; display: flow-root; }
+        .inspiration-box h1 { color: var(--primary-accent); margin-bottom: 2rem; }
+        .inspiration-text { font-size: 1.25rem; line-height: 2.2; position: relative; }
+        .scatter-pic { width: 250px; height: 250px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border-color); margin: 30px; }
+        .float-left { float: left; margin-left: 0; }
+        .float-right { float: right; margin-right: 0; }
+        .pdf-box { background: var(--glass-bg); padding: 5rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); text-align: center; }
+        .pdf-btn { display: inline-block; padding: 1.5rem 4rem; background: var(--primary-accent); color: #000; font-weight: 900; text-decoration: none; border-radius: 50px; transition: 0.3s; margin-top: 30px; }
+
+        /* -----------------------------------------------------------
+           6. DETAIL PAGES (01, 02, 03)
+        ----------------------------------------------------------- */
+        .detail-layout { padding: 150px 10%; display: flex; flex-direction: column; align-items: center; }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1200px; margin-top: 50px; }
+        .detail-pics-side img { width: 100%; height: 320px; border-radius: 30px; object-fit: cover; border: 1px solid var(--border-color); margin-bottom: 30px; }
+        .detail-text-side { background: var(--glass-bg); padding: 4rem; border-radius: 40px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); line-height: 2; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-fixed"></div>
+    <div id="dimmer" class="bg-dimmer"></div>
+
+    <nav>
+        <ul>
+            <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
+            <li><a onclick="showPage('about-page')">ABOUT</a></li>
+            <li><a onclick="showPage('contact-page')">CONTACT</a></li>
+            <li><a onclick="showPage('learn-page')">LEARN MORE</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active">
+        <section id="hero">
+            <h1>THE FALCON</h1>
+            <p>Introduced by DaedalusInnovation: Invent the Future</p>
+
+            <!-- CINEMATIC VIDEO EMBED -->
+            <div class="hero-video-wrapper">
+                <div class="hero-video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0&iv_load_policy=3" 
+                        title="Peregrine Falcon Flight" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <img src="https://cdn-icons-png.flaticon.com/512/2985/2985149.png" alt="Scroll Down" onclick="window.scrollBy({top: 600, behavior: 'smooth'})">
+            </div>
+        </section>
+        
+        <div class="vision-box reveal">
+            <h2>OUR VISION</h2>
+            <p>We believe that humans can experience true fight and share the skies with our avian relatives. Other methods of human flight have come up short in many apsects of the flight experience. Now we take a leap forward into immersion and control with the FALCON.</p>
+        </div>
+
+        <div class="scrolly-container">
+            <div class="sticky-visual">
+                <img src="images/output.jpg" id="img1" class="showcase-img visible">
+                <img src="images/output (2).jpg" id="img2" class="showcase-img">
+                <img src="images/output (3).jpg" id="img3" class="showcase-img">
+            </div>
+            <div class="step" data-img="img1">
+                <div class="side-text left-box">
+                    <h3 onclick="showPage('detail-1')">1. Wings</h3>
+                    <p>Our wing design is centered around a morphing ability. By changing shape mid flight we optimize the FALCON's aerodyanmics for the desired flight position. Click to learn more.</p>
+                </div>
+            </div>
+            <div class="step" data-img="img2">
+                <div class="side-text right-box">
+                    <h3 onclick="showPage('detail-2')">2. Body</h3>
+                    <p>The body of the FALCON combines an electric powered motor and safety features while ensuring a comfartable and seemless flight experience. Click to learn more.</p>
+                </div>
+            </div>
+            <div class="step" data-img="img3">
+                <div class="side-text left-box">
+                    <h3 onclick="showPage('detail-3')">3. Tail</h3>
+                    <p>Our tail design maintains effcient and controlled flgith for the FALCON. It balances the entire suit and provides precise controls to move in any direction. Click to learn more.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page">
+        <div class="about-wrap">
+            <div class="about-grid">
+                <div class="about-left-half">
+                    <h1>About Us</h1>
+                    <p>This research project is a collaboration between Michael Buchanan and Matthew Jasaitis. It started as a semester project but is being updated and improved upon continuosly.</p>
+                    <p>We believe in turning ideas into reality and this project is how we are engineering the future we wish to see.</p>
+                </div>
+                <div class="about-right-half">
+                    <div class="oval-container">
+                        <img src="TBD" class="oval-pic">
+                        <div class="name-box">Michael Buchanan</div>
+                    </div>
+                    <div class="oval-container">
+                        <img src="TBD" class="oval-pic">
+                        <div class="name-box">Matthew Jasaitis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact-page" class="page">
+        <div class="contact-wrap">
+            <h1>Reach out with any questions, comments, or ideas!</h1>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-label-box">daedalusinnovation@gmail.com</div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="contact-icon">
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label-box">DaedalusInnovation</div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="contact-icon">
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label-box">TBD</div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="contact-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEARN MORE PAGE -->
+    <div id="learn-page" class="page">
+        <div class="learn-container">
+            <div class="inspiration-box">
+                <h1>Inspirations & Design</h1>
+                <div class="inspiration-text">
+                    <img src="TBD" class="scatter-pic float-left">
+                    In progess...
+                    <img src="TBD" class="scatter-pic float-right">
+                </div>
+            </div>
+            <div class="pdf-box">
+                <h1>Technical Whitepaper</h1>
+                <p>Download the technical specifications PDF below.</p>
+                <a href="design-specs.pdf" class="pdf-btn">DOWNLOAD FULL SPECS (PDF)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL PAGES -->
+    <div id="detail-1" class="page">
+        <div class="detail-layout">
+            <h1 style="color:var(--primary-accent); font-size: 3rem;">01. Wings</h1>
+            <div class="detail-grid">
+                <div class="detail-pics-side">
+                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=500">
+                </div>
+                <div class="detail-text-side">
+                    Exploring graphene weaves for skeletal wing structures that are virtually weightless yet durable under extreme pressure.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-2" class="page">
+        <div class="detail-layout">
+            <h1 style="color:var(--primary-accent); font-size: 3rem;">02. Body</h1>
+            <div class="detail-grid">
+                <div class="detail-pics-side">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=500">
+                </div>
+                <div class="detail-text-side">
+                    Translating pilot joint movements into precise aerofoil control via a network of distributed bio-sensors.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-3" class="page">
+        <div class="detail-layout">
+            <h1 style="color:var(--primary-accent); font-size: 3rem;">03. Tail</h1>
+            <div class="detail-grid">
+                <div class="detail-pics-side">
+                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=500">
+                </div>
+                <div class="detail-text-side">
+                    Utilizing CFD (Computational Fluid Dynamics) to optimize flight paths within a digital twin environment.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dimmer = document.getElementById('dimmer');
+        window.addEventListener('scroll', () => {
+            let opacity = 0.2 + (window.scrollY / 2500);
+            dimmer.style.opacity = Math.min(opacity, 0.50);
+        });
+
+        function showPage(pageId, pushToHistory = true) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+                if (pushToHistory) {
+                    history.pushState({ pageId: pageId }, '', '#' + pageId);
+                }
+            }
+        }
+
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.pageId) {
+                showPage(event.state.pageId, false);
+            } else {
+                showPage('home-page', false);
+            }
+        });
+
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                showPage(hash, false);
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.classList.contains('step')) {
+                        const imgId = entry.target.getAttribute('data-img');
+                        document.querySelectorAll('.showcase-img').forEach(img => img.classList.remove('visible'));
+                        document.getElementById(imgId).classList.add('visible');
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.step, .reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
