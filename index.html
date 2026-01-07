@@ -12,17 +12,22 @@
             --primary-accent: #00d4ff;    
             --text-main: #ffffff;
             --glass-bg: rgba(0, 0, 0, 0.4); 
-            --border-color: rgba(255, 255, 255, 0.2);
+            --border-color: rgba(255, 255, 255, 0.25);
             
-            /* High-reliability Stratospheric Background Image */
-            --main-bg-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=1920');
+            /* High-Altitude Earth Cloud Background */
+            --main-bg-image: url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1920');
             
             --transition-speed: 0.8s;      
             --nav-height: 80px;
+
+            /* Neon Blue Backlight Effect */
+            --neon-glow: 0 0 10px rgba(0, 212, 255, 0.8), 
+                         0 0 20px rgba(0, 212, 255, 0.5), 
+                         0 0 30px rgba(0, 212, 255, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: #001220; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: #7ab8ef; overflow-x: hidden; }
 
         /* FIXED BACKGROUND ENGINE */
         .bg-fixed { 
@@ -33,18 +38,18 @@
             height: 100vh; 
             background-image: var(--main-bg-image); 
             background-size: cover; 
-            background-position: center bottom; 
+            background-position: center; 
             z-index: -2; 
         }
         
-        /* STATIC ATMOSPHERIC OVERLAY (Removes dynamic darkening) */
+        /* STATIC OVERLAY (No dynamic darkening) */
         .bg-dimmer { 
             position: fixed; 
             top: 0; 
             left: 0; 
             width: 100vw; 
             height: 100vh; 
-            background: rgba(0, 15, 30, 0.2); /* Very light tint just for text contrast */
+            background: rgba(0, 40, 80, 0.1); 
             z-index: -1; 
             pointer-events: none; 
         }
@@ -53,64 +58,66 @@
         nav { 
             position: fixed; top: 0; width: 100%; height: var(--nav-height); 
             z-index: 9999; display: flex; justify-content: center; align-items: center; 
-            background: rgba(0,10,20,0.3); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); 
+            background: rgba(0,20,40,0.3); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); 
         }
         nav ul { display: flex; list-style: none; gap: 45px; align-items: center; }
         nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; }
-        nav ul li a:hover { color: var(--primary-accent); }
+        nav ul li a:hover { color: var(--primary-accent); text-shadow: var(--neon-glow); }
 
         .page { width: 100%; display: none; }
         .page.active { display: block; }
 
         /* -----------------------------------------------------------
-           2. HOME PAGE
+           2. HOME PAGE (NEON BLUE BACKLIGHTING)
         ----------------------------------------------------------- */
         
         #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         #hero-header h1 { 
             font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; 
             max-width: 1000px; padding: 0 20px; line-height: 1.2;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.8); 
+            text-shadow: var(--neon-glow), 2px 2px 10px rgba(0,0,0,0.5); 
         }
 
-        /* Main Video Container */
-        .main-video-section { max-width: 1000px; margin: 0 auto 100px auto; padding: 0 20px; }
+        .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
         .video-box { 
             position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
             border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15);
         }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* wide scrolling horizontal videos */
+        /* Scrolling horizontal videos */
         .scroll-video-row { width: 100%; padding: 60px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
         .scroll-video-row.active { opacity: 1; transform: translateY(0); }
         .wide-video { 
             width: 75%; aspect-ratio: 21 / 9; border-radius: 20px; 
             border: 1px solid var(--border-color); overflow: hidden; 
-            background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
         .left-align { justify-content: flex-start; }
         .right-align { justify-content: flex-end; }
 
-        /* Text Spacing Sections */
+        /* Headings with Neon Glow */
         .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
         .text-break.active { opacity: 1; transform: translateY(0); }
-        .text-break h2 { font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 300; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
+        .text-break h2 { 
+            font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 400; 
+            text-shadow: var(--neon-glow), 2px 2px 10px rgba(0,0,0,0.5);
+        }
         .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
 
-        /* Feature Sections (Wings, Body, Tail) */
+        /* Feature Sections */
         .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 120px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
         .feature-img { 
             width: 80%; height: 85%; object-fit: cover; border-radius: 40px; 
-            border: 1px solid var(--border-color); filter: brightness(0.8); 
-            transition: 1s; box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            border: 1px solid var(--border-color); filter: brightness(0.85); 
+            transition: 1s; box-shadow: 0 25px 60px rgba(0,0,0,0.3);
         }
         
         .feature-box { 
             position: absolute; width: 330px; padding: 2.5rem; background: var(--glass-bg); 
-            backdrop-filter: blur(25px); border: 1px solid var(--border-color); border-radius: 25px; 
+            backdrop-filter: blur(30px); border: 1px solid var(--border-color); border-radius: 25px; 
             font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1s; z-index: 10;
         }
         .feature-container.active .feature-box { opacity: 1; }
@@ -125,12 +132,13 @@
         .final-hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         .final-hero h1 { 
             font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); 
-            text-transform: uppercase; font-weight: 800; text-shadow: 0 5px 30px rgba(0,0,0,0.8); 
+            text-transform: uppercase; font-weight: 800; 
+            text-shadow: var(--neon-glow), 2px 2px 15px rgba(0,0,0,0.4); 
         }
 
         /* Sub Pages */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
-        .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); }
+        .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); }
     </style>
 </head>
 <body>
@@ -154,7 +162,7 @@
             <h1>Humans have always dreamed of flight</h1>
         </section>
 
-        <!-- Main Video: Falcon -->
+        <!-- Main Video: Falcon (BBC Earth) -->
         <div class="main-video-section">
             <div class="video-box">
                 <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
@@ -168,7 +176,7 @@
             </div>
         </div>
 
-        <!-- 2. Airplane -->
+        <!-- 2. Airplane Takeoff -->
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
@@ -234,12 +242,12 @@
         </section>
     </div>
 
-    <!-- OTHER PAGES -->
+    <!-- SUB PAGES -->
     <div id="about-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
-                <h1 style="color:var(--primary-accent); margin-bottom:20px;">About Us</h1>
-                <p style="font-size: 1.2rem; line-height: 2;">A research collaboration between Michael Buchanan and Matthew Jasaitis. Engineering the next leap in human flight.</p>
+                <h1 style="color:var(--primary-accent); margin-bottom:20px; text-shadow: var(--neon-glow);">About Us</h1>
+                <p style="font-size: 1.2rem; line-height: 2;">A research collaboration between Michael Buchanan and Matthew Jasaitis. Engineering the future of flight.</p>
             </div>
         </div>
     </div>
@@ -247,7 +255,7 @@
     <div id="contact-page" class="page">
         <div class="sub-wrap" style="text-align:center;">
             <div class="glass-panel">
-                <h1>Contact</h1>
+                <h1 style="text-shadow: var(--neon-glow);">Contact</h1>
                 <p style="margin: 30px 0; font-size: 1.5rem;">daedalusinnovation@gmail.com</p>
                 <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="width: 80px; filter: invert(1);">
             </div>
@@ -257,15 +265,15 @@
     <div id="learn-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
-                <h1>Technical Specifications</h1>
-                <p style="margin: 20px 0;">Technical whitepapers are currently being updated.</p>
-                <a href="#" style="background:var(--primary-accent); color:#000; padding: 20px 40px; text-decoration:none; font-weight:800; border-radius:50px; display:inline-block;">DOWNLOAD SPECS</a>
+                <h1 style="text-shadow: var(--neon-glow);">Technical Whitepaper</h1>
+                <p style="margin: 20px 0;">Technical specifications are currently being updated.</p>
+                <a href="#" style="background:var(--primary-accent); color:#000; padding: 20px 40px; text-decoration:none; font-weight:800; border-radius:50px; display:inline-block;">DOWNLOAD PDF</a>
             </div>
         </div>
     </div>
 
     <script>
-        // PAGE NAVIGATION
+        // NAVIGATION LOGIC
         function showPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
@@ -279,7 +287,7 @@
         window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
         window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-        // ANIMATION OBSERVER
+        // ANIMATION LOGIC
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
