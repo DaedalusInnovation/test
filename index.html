@@ -7,46 +7,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
     
     <style>
-        /* -----------------------------------------------------------
-           1. VARIABLE CONTROL CENTER
-        ----------------------------------------------------------- */
+        /* 1. VARIABLE CONTROL CENTER */
         :root {
             --primary-accent: #00d4ff;    
             --text-main: #ffffff;
-            --glass-bg: rgba(0, 0, 0, 0.45); 
-            --border-color: rgba(255, 255, 255, 0.25);
+            --glass-bg: rgba(0, 0, 0, 0.4); 
+            --border-color: rgba(255, 255, 255, 0.2);
             
-            /* UPDATED: High-altitude stratospheric background */
-            --main-bg-image: url('https://images.unsplash.com/photo-1464802686167-b939a67a06d1?q=80&w=2070&auto=format&fit=crop');
+            /* High-reliability Stratospheric Background Image */
+            --main-bg-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=1920');
             
             --transition-speed: 0.8s;      
             --nav-height: 80px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: #000; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: #001220; overflow-x: hidden; }
 
-        /* Background Engine */
+        /* FIXED BACKGROUND ENGINE */
         .bg-fixed { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
             background-image: var(--main-bg-image); 
             background-size: cover; 
-            background-position: center; 
+            background-position: center bottom; 
             z-index: -2; 
         }
         
-        /* Fixed overlay for readability (NO MORE SCROLL DARKENING) */
+        /* STATIC ATMOSPHERIC OVERLAY (Removes dynamic darkening) */
         .bg-dimmer { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)); 
-            z-index: -1; pointer-events: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            background: rgba(0, 15, 30, 0.2); /* Very light tint just for text contrast */
+            z-index: -1; 
+            pointer-events: none; 
         }
 
         /* Navigation */
         nav { 
             position: fixed; top: 0; width: 100%; height: var(--nav-height); 
             z-index: 9999; display: flex; justify-content: center; align-items: center; 
-            background: rgba(0,0,0,0.2); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); 
+            background: rgba(0,10,20,0.3); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); 
         }
         nav ul { display: flex; list-style: none; gap: 45px; align-items: center; }
         nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; }
@@ -56,56 +63,55 @@
         .page.active { display: block; }
 
         /* -----------------------------------------------------------
-           2. HOME PAGE STRUCTURE
+           2. HOME PAGE
         ----------------------------------------------------------- */
         
-        /* Main Hero Header */
-        #hero-header { height: 65vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         #hero-header h1 { 
-            font-size: 4rem; letter-spacing: 10px; font-weight: 800; text-transform: uppercase; 
-            max-width: 900px; padding: 0 20px; line-height: 1.3; 
-            text-shadow: 0 5px 25px rgba(0,0,0,0.7); 
+            font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; 
+            max-width: 1000px; padding: 0 20px; line-height: 1.2;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8); 
         }
 
         /* Main Video Container */
-        .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
+        .main-video-section { max-width: 1000px; margin: 0 auto 100px auto; padding: 0 20px; }
         .video-box { 
             position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
             border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Wide Scrolling Videos */
-        .scroll-video-row { width: 100%; padding: 80px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
+        /* wide scrolling horizontal videos */
+        .scroll-video-row { width: 100%; padding: 60px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
         .scroll-video-row.active { opacity: 1; transform: translateY(0); }
         .wide-video { 
             width: 75%; aspect-ratio: 21 / 9; border-radius: 20px; 
             border: 1px solid var(--border-color); overflow: hidden; 
-            background: #000; position: relative; box-shadow: 0 15px 45px rgba(0,0,0,0.5);
+            background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
-        .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; }
+        .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
         .left-align { justify-content: flex-start; }
         .right-align { justify-content: flex-end; }
 
-        /* Text Spacing */
-        .text-break { text-align: center; padding: 180px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
+        /* Text Spacing Sections */
+        .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
         .text-break.active { opacity: 1; transform: translateY(0); }
-        .text-break h2 { font-size: 2.2rem; letter-spacing: 5px; line-height: 1.6; font-weight: 300; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
-        .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.5rem; text-transform: uppercase; }
+        .text-break h2 { font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 300; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
+        .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
 
-        /* Feature Sections (Image with corner boxes) */
-        .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 150px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
+        /* Feature Sections (Wings, Body, Tail) */
+        .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 120px auto; height: 85vh; display: flex; align-items: center; justify-content: center; }
         .feature-img { 
-            width: 85%; height: 85%; object-fit: cover; border-radius: 40px; 
+            width: 80%; height: 85%; object-fit: cover; border-radius: 40px; 
             border: 1px solid var(--border-color); filter: brightness(0.8); 
-            transition: 1s; box-shadow: 0 30px 70px rgba(0,0,0,0.7); 
+            transition: 1s; box-shadow: 0 25px 60px rgba(0,0,0,0.6);
         }
         
         .feature-box { 
-            position: absolute; width: 340px; padding: 2.5rem; background: var(--glass-bg); 
+            position: absolute; width: 330px; padding: 2.5rem; background: var(--glass-bg); 
             backdrop-filter: blur(25px); border: 1px solid var(--border-color); border-radius: 25px; 
-            font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1.5s; z-index: 10;
+            font-size: 0.95rem; line-height: 1.8; opacity: 0; transition: 1s; z-index: 10;
         }
         .feature-container.active .feature-box { opacity: 1; }
         .feature-container.active .feature-img { filter: brightness(0.5); }
@@ -115,14 +121,14 @@
         .top-right { top: 0; right: 0; }
         .bottom-left { bottom: 0; left: 0; }
 
-        /* Final Landing Header */
-        .final-hero { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        /* Final Closing Hero */
+        .final-hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         .final-hero h1 { 
             font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); 
-            text-transform: uppercase; font-weight: 800; text-shadow: 0 10px 40px rgba(0,0,0,0.6); 
+            text-transform: uppercase; font-weight: 800; text-shadow: 0 5px 30px rgba(0,0,0,0.8); 
         }
 
-        /* Sub Page Styling */
+        /* Sub Pages */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); }
     </style>
@@ -155,19 +161,21 @@
             </div>
         </div>
 
-        <!-- Staggered History Videos -->
+        <!-- 1. Hang Glider -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
             </div>
         </div>
 
+        <!-- 2. Airplane -->
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
             </div>
         </div>
 
+        <!-- 3. Jetson One -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
@@ -187,37 +195,37 @@
             <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img">
             <div class="feature-box top-left">
                 <strong>MORPHING GEOMETRY</strong><br><br>
-                By changing shape mid-flight, we optimize aerodynamics for the desired position, mimicking the precision of avian flight.
+                By changing shape mid-flight, we optimize aerodynamics for the desired position, mimicking the precision of biological flight.
             </div>
             <div class="feature-box bottom-right">
                 <strong>ULTRA-LIGHTWEIGHT</strong><br><br>
-                Our skeletal structures use advanced composites that remain virtually weightless while sustaining extreme air pressure.
+                Our skeletal structures use advanced graphene composites that remain virtually weightless while sustaining extreme air pressure.
             </div>
         </div>
 
-        <!-- FEATURE 2: TURBINE/PARACHUTE -->
+        <!-- FEATURE 2: PROPULSION -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img">
             <div class="feature-box top-right">
-                <strong>ELECTRIC PROPULSION</strong><br><br>
-                High-torque electric turbines provide necessary thrust without the bulk of combustion, ensuring a seamless flight experience.
+                <strong>ELECTRIC THRUST</strong><br><br>
+                High-torque electric turbines provide necessary vertical lift without the bulk of combustion, ensuring a seamless flight profile.
             </div>
             <div class="feature-box bottom-left">
-                <strong>SAFETY INTEGRATION</strong><br><br>
-                Integrated ballistic parachute systems deploy automatically in milliseconds, providing an absolute safety net for the pilot.
+                <strong>SAFETY NET</strong><br><br>
+                An integrated ballistic recovery parachute deploys automatically in milliseconds, providing an absolute failsafe for the pilot.
             </div>
         </div>
 
-        <!-- FEATURE 3: TAIL/CONTROLS -->
+        <!-- FEATURE 3: TAIL -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img">
             <div class="feature-box top-left">
-                <strong>STABILIZED FLIGHT</strong><br><br>
-                The tail design maintains efficiency and controlled flight, balancing the suit and providing precise multi-directional movement.
+                <strong>STABILIZED GLIDE</strong><br><br>
+                The active tail design balances the entire suit, providing precise multi-directional movement and efficiency.
             </div>
             <div class="feature-box bottom-right">
-                <strong>INTUITIVE BIO-LINK</strong><br><br>
-                Translating pilot joint movements into precise aerofoil control via a network of distributed bio-sensors.
+                <strong>INTUITIVE NEURAL-LINK</strong><br><br>
+                Translating pilot joint movements into aerofoil control via a high-speed network of distributed bio-sensors.
             </div>
         </div>
 
@@ -226,12 +234,12 @@
         </section>
     </div>
 
-    <!-- SUB PAGES -->
+    <!-- OTHER PAGES -->
     <div id="about-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
                 <h1 style="color:var(--primary-accent); margin-bottom:20px;">About Us</h1>
-                <p style="font-size: 1.2rem; line-height: 2;">Research collaboration by Michael Buchanan and Matthew Jasaitis. Engineering the future of flight.</p>
+                <p style="font-size: 1.2rem; line-height: 2;">A research collaboration between Michael Buchanan and Matthew Jasaitis. Engineering the next leap in human flight.</p>
             </div>
         </div>
     </div>
@@ -239,7 +247,7 @@
     <div id="contact-page" class="page">
         <div class="sub-wrap" style="text-align:center;">
             <div class="glass-panel">
-                <h1>Contact Us</h1>
+                <h1>Contact</h1>
                 <p style="margin: 30px 0; font-size: 1.5rem;">daedalusinnovation@gmail.com</p>
                 <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="width: 80px; filter: invert(1);">
             </div>
@@ -249,15 +257,15 @@
     <div id="learn-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
-                <h1>Technical Whitepaper</h1>
-                <p style="margin: 20px 0;">Technical specifications in progress.</p>
-                <a href="#" style="background:var(--primary-accent); color:#000; padding: 20px 40px; text-decoration:none; font-weight:800; border-radius:50px; display:inline-block;">DOWNLOAD PDF</a>
+                <h1>Technical Specifications</h1>
+                <p style="margin: 20px 0;">Technical whitepapers are currently being updated.</p>
+                <a href="#" style="background:var(--primary-accent); color:#000; padding: 20px 40px; text-decoration:none; font-weight:800; border-radius:50px; display:inline-block;">DOWNLOAD SPECS</a>
             </div>
         </div>
     </div>
 
     <script>
-        // Navigation Logic
+        // PAGE NAVIGATION
         function showPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
@@ -271,7 +279,7 @@
         window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
         window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-        // Scroll Reveal Observer
+        // ANIMATION OBSERVER
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
