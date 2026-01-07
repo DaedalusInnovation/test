@@ -12,6 +12,7 @@
             --primary-accent: #00d4ff;    
             --text-main: #ffffff;
             --glass-bg: rgba(0, 0, 0, 0.4); 
+            --glass-darker: rgba(0, 0, 0, 0.7);
             --border-color: rgba(255, 255, 255, 0.25);
             
             /* High-Altitude Earth Cloud Background */
@@ -42,7 +43,7 @@
             z-index: -2; 
         }
         
-        /* STATIC OVERLAY (No dynamic darkening) */
+        /* STATIC OVERLAY */
         .bg-dimmer { 
             position: fixed; 
             top: 0; 
@@ -61,14 +62,54 @@
             background: rgba(0,20,40,0.3); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); 
         }
         nav ul { display: flex; list-style: none; gap: 45px; align-items: center; }
-        nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; }
+        nav ul li { position: relative; } /* Needed for dropdown positioning */
+        nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; display: block; padding: 10px 0; }
         nav ul li a:hover { color: var(--primary-accent); text-shadow: var(--neon-glow); }
+
+        /* DROPDOWN MENU STYLES */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-darker);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px 0;
+            min-width: 180px;
+            text-align: center;
+            list-style: none;
+            flex-direction: column;
+            gap: 10px;
+            
+            /* Hidden state */
+            opacity: 0;
+            visibility: hidden;
+            
+            /* The Magic Delay: Transition visibility/opacity with a delay on the 'exit' */
+            transition: opacity 0.3s ease, visibility 0s linear 1s; 
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* Hover State for Dropdown */
+        nav ul li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            /* Remove delay when entering so it appears instantly */
+            transition: opacity 0.3s ease, visibility 0s linear 0s;
+        }
 
         .page { width: 100%; display: none; }
         .page.active { display: block; }
 
         /* -----------------------------------------------------------
-           2. HOME PAGE (NEON BLUE BACKLIGHTING)
+           HOME PAGE STYLES
         ----------------------------------------------------------- */
         
         #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
@@ -136,9 +177,33 @@
             text-shadow: var(--neon-glow), 2px 2px 15px rgba(0,0,0,0.4); 
         }
 
-        /* Sub Pages */
+        /* Sub Pages Common Styles */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
-        .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); }
+        .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); margin-bottom: 50px; }
+        
+        .design-page-header {
+            text-align: center; margin-bottom: 80px;
+        }
+        .design-page-header h1 {
+            font-size: 4rem; color: var(--primary-accent); text-transform: uppercase;
+            text-shadow: var(--neon-glow); margin-bottom: 20px;
+        }
+        .content-block {
+            display: flex; flex-direction: column; gap: 40px;
+        }
+        .text-content {
+            font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;
+        }
+        .media-placeholder {
+            width: 100%; height: 500px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; letter-spacing: 2px; color: var(--primary-accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .media-placeholder img {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.7;
+        }
+        
     </style>
 </head>
 <body>
@@ -149,41 +214,47 @@
     <nav>
         <ul>
             <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
+            
+            <li>
+                <a href="#">DESIGN</a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showPage('wings-page')">WINGS</a></li>
+                    <li><a onclick="showPage('body-page')">BODY</a></li>
+                    <li><a onclick="showPage('tail-page')">TAIL</a></li>
+                    <li><a onclick="showPage('systems-page')">SYSTEMS/UI</a></li>
+                </ul>
+            </li>
+
             <li><a onclick="showPage('about-page')">ABOUT</a></li>
             <li><a onclick="showPage('contact-page')">CONTACT</a></li>
             <li><a onclick="showPage('learn-page')">LEARN MORE</a></li>
         </ul>
     </nav>
 
-    <!-- HOME PAGE -->
     <div id="home-page" class="page active">
         
         <section id="hero-header">
             <h1>Humans have always dreamed of flight</h1>
         </section>
 
-        <!-- Main Video: Falcon (BBC Earth) -->
         <div class="main-video-section">
             <div class="video-box">
                 <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             </div>
         </div>
 
-        <!-- 1. Hang Glider -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 2. Airplane Takeoff -->
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
             </div>
         </div>
 
-        <!-- 3. Jetson One -->
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
                 <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
@@ -198,7 +269,6 @@
             <h2>How we can improve:</h2>
         </div>
 
-        <!-- FEATURE 1: WINGS -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img">
             <div class="feature-box top-left">
@@ -211,7 +281,6 @@
             </div>
         </div>
 
-        <!-- FEATURE 2: PROPULSION -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img">
             <div class="feature-box top-right">
@@ -224,7 +293,6 @@
             </div>
         </div>
 
-        <!-- FEATURE 3: TAIL -->
         <div class="feature-container reveal">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img">
             <div class="feature-box top-left">
@@ -242,7 +310,112 @@
         </section>
     </div>
 
-    <!-- SUB PAGES -->
+    <div id="wings-page" class="page">
+        <div class="sub-wrap">
+            <div class="design-page-header">
+                <h1>WINGS</h1>
+                <p style="font-size:1.5rem;">Adaptive Morphing Aerodynamics</p>
+            </div>
+            
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    The primary limitation of traditional fixed-wing aircraft is rigidity. The FALCON wing architecture utilizes a bio-mimetic "smart skin" stretched over an articulating carbon-graphene skeleton. This allows the wings to expand for lift during takeoff and retract for speed during flight, just as a peregrine falcon tucks its wings for a dive.
+                </p>
+                <div class="media-placeholder">
+                    <img src="https://images.unsplash.com/photo-1524388484152-4fe193d50893?q=80&w=1200" alt="Wing Structure">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Using pneumatic actuators woven directly into the fabric, the camber of the wing can be adjusted 500 times per second. This results in zero-stall capability at low speeds and extreme maneuverability in high-G environments.
+                </p>
+                <div class="media-placeholder">
+                    <iframe src="https://www.youtube.com/embed/videoid?autoplay=0&mute=1&controls=0" style="width:100%; height:100%; border:0;" title="Wing Actuation Simulation (Placeholder)"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="body-page" class="page">
+        <div class="sub-wrap">
+            <div class="design-page-header">
+                <h1>BODY</h1>
+                <p style="font-size:1.5rem;">The Fuselage of the Future</p>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    The pilot is not a passenger; they are the fuselage. The body unit is constructed from a non-Newtonian fluid-armor composite that remains flexible during normal operation but hardens instantly upon impact. This provides ballistic-grade protection without the bulk of plate armor.
+                </p>
+                <div class="media-placeholder">
+                     <img src="https://images.unsplash.com/photo-1515266591878-5a14243f1e3b?q=80&w=1200" alt="Body Armor Concept">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Integrated into the dorsal spine is the primary battery array—a solid-state lithium-sulfur configuration offering 3x the energy density of current EVs. This weight distribution keeps the center of gravity aligned with the pilot's own movements.
+                </p>
+                <div class="media-placeholder">
+                    VIDEO: Battery Core Integration
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tail-page" class="page">
+        <div class="sub-wrap">
+            <div class="design-page-header">
+                <h1>TAIL</h1>
+                <p style="font-size:1.5rem;">Precision Vectoring & Stabilization</p>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Often overlooked, the tail is the rudder of the sky. Our split-V tail design features independent vectoring. By splitting the tail surfaces, the pilot acts as an airbrake without losing altitude, a maneuver essential for precision landing in urban environments.
+                </p>
+                <div class="media-placeholder">
+                    <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?q=80&w=1200" alt="Tail Aerodynamics">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    The tail also houses the emergency Ballistic Recovery System (BRS). In the event of total system failure, a rocket-deployed parachute ejects from the tail cone, safely lowering the pilot and the suit from altitudes as low as 100 feet.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="systems-page" class="page">
+        <div class="sub-wrap">
+            <div class="design-page-header">
+                <h1>SYSTEMS / UI</h1>
+                <p style="font-size:1.5rem;">Augmented Reality Flight Deck</p>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Physical gauges are obsolete. The FALCON helmet utilizes a waveguide holographic display, projecting altitude, airspeed, and thermal updraft visualizations directly onto the pilot's retina. The interface is minimal—only showing data when it is critical.
+                </p>
+                <div class="media-placeholder">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" alt="HUD Interface">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    <strong>Haptic Feedback Loop:</strong> The suit "speaks" to the pilot through localized vibration motors. If a stall is imminent on the left wing, the pilot feels a vibration on their left shoulder. This intuitive feedback loop reduces cognitive load, allowing for instinctive flying.
+                </p>
+                <div class="media-placeholder">
+                    VIDEO: Neural Link Visualization
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div id="about-page" class="page">
         <div class="sub-wrap">
             <div class="glass-panel">
