@@ -60,11 +60,37 @@
     nav ul li { position: relative; }
     nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; padding: 10px 15px; display: block; }
     nav ul li a:hover { color: var(--primary-accent); text-shadow: var(--neon-glow); }
-    /* Dropdown styles */
-    .dropdown { position: absolute; top: var(--nav-height); left: 0; background: rgba(0,20,40,0.8); border-radius: 8px; display: none; flex-direction: column; min-width: 150px; }
-    .dropdown a { padding: 10px; font-size: 0.75rem; }
-    li:hover .dropdown { display: flex; }
 
+    /* Dropdown styles - larger size and transition */
+    .dropdown { 
+        position: absolute; 
+        top: var(--nav-height); 
+        left: 0; 
+        background: rgba(0,20,40,0.8); 
+        border-radius: 8px; 
+        display: flex; 
+        flex-direction: column; 
+        min-width: 200px; /* Larger width */
+        padding: 10px 0;
+        opacity: 0; 
+        transform: translateY(-10px); /* Slight offset for animation */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 10000;
+    }
+
+    /* Show dropdown on hover with delay */
+    li:hover .dropdown { 
+        opacity: 1; 
+        transform: translateY(0); 
+        pointer-events: auto; 
+        /* We'll add a small delay via JS for hiding */
+    }
+
+    /* Dropdown items */
+    .dropdown a { padding: 10px 20px; font-size: 1rem; color: var(--text-main); text-decoration: none; }
+    .dropdown a:hover { background-color: rgba(255,255,255,0.1); }
+
+    /* Page styles */
     .page { width: 100%; display: none; padding-top: var(--nav-height); }
     .page.active { display: block; }
 
@@ -158,7 +184,7 @@
         <!-- Add DESIGN dropdown -->
         <li>
             <a>DESIGN</a>
-            <div class="dropdown">
+            <div class="dropdown" id="design-dropdown">
                 <a onclick="showPage('wings-page')">WINGS</a>
                 <a onclick="showPage('body-page')">BODY</a>
                 <a onclick="showPage('tail-page')">TAIL</a>
@@ -344,7 +370,24 @@
     window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
     window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-    // ANIMATION LOGIC
+    // Dropdown hover delay logic
+    const dropdown = document.getElementById('design-dropdown');
+    let hideTimeout;
+    document.querySelectorAll('nav ul li').forEach(li => {
+        if (li.querySelector('.dropdown')) {
+            li.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                li.querySelector('.dropdown').style.display = 'flex';
+            });
+            li.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    li.querySelector('.dropdown').style.display = 'none';
+                }, 2000); // 2 seconds delay
+            });
+        }
+    });
+
+    // Animate on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
