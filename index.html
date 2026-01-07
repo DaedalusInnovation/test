@@ -12,7 +12,7 @@
         --text-main: #ffffff;
         --glass-bg: rgba(0, 0, 0, 0.4); 
         --border-color: rgba(255, 255, 255, 0.25);
-        /* High-Altitude Earth Cloud Background */
+        /* Background image */
         --main-bg-image: url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1920');
         --transition-speed: 0.8s;      
         --nav-height: 80px;
@@ -55,59 +55,43 @@
     .page.active { display: block; }
 
     /* -----------------------------------------------------------
-       HOME PAGE with blue text closer to neon, no boxes, slight darker blue backlight
+       HOME PAGE (Original design, neon glow, background, large header)
     ----------------------------------------------------------- */
-    
     #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     #hero-header h1 { 
         font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; 
         max-width: 1000px; padding: 0 20px; line-height: 1.2;
-        background-color: rgba(0,0,50,0.3); /* slight darker blue backlight */
-        padding: 20px;
-        display: inline-block;
-        border-radius: 10px;
-        color: #66CCFF; /* closer to neon blue for headers */
-        text-shadow: none; /* no neon glow */
+        text-shadow: var(--neon-glow), 2px 2px 10px rgba(0,0,0,0.5); 
     }
 
     .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
     .video-box { 
         position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
         border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15);
     }
     .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-    /* Large horizontal videos - first, second, third */
-    .bottom-videos-container {
-        display: flex; justify-content: space-between; align-items: flex-start; width: 100%; padding: 20px;
-        gap: 20px;
+    /* Scrolling horizontal videos - optional, kept minimal here for simplicity */
+    .scroll-video-row { width: 100%; padding: 60px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
+    .scroll-video-row.active { opacity: 1; transform: translateY(0); }
+    .wide-video { 
+        width: 75%; aspect-ratio: 21 / 9; border-radius: 20px; 
+        border: 1px solid var(--border-color); overflow: hidden; 
+        background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     }
-    .bottom-video {
-        flex: 1; /* grow equally */
-        min-width: 300px;
-        max-width: 48%;
-        height: 200px; /* large height for long horizontal videos */
-        position: relative;
-    }
-    .bottom-video iframe {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
-    }
+    .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
 
-    /* Text styles: darker blue for readability, no boxes, subtle backlight */
+    /* Text styles: neon glow, large, centered heading with glow */
     .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
     .text-break.active { opacity: 1; transform: translateY(0); }
     .text-break h2 { 
         font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 400; 
-        color: #66CCFF; /* neon blue for headings and texts */
-        background-color: rgba(0,0,50,0.2);
-        padding: 10px;
-        border-radius: 8px;
-        display: inline-block;
+        text-shadow: var(--neon-glow), 2px 2px 10px rgba(0,0,0,0.5); 
     }
-    .intro-section h2 { color: #66CCFF; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
+    .intro-section h2 { color: var(--primary-accent); font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
 
-    /* Feature Sections with neon blue text for readability */
+    /* Feature Sections with neon glow for text */
     .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 120px auto; height: 85vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
     .feature-img { 
         width: 80%; height: 85%; object-fit: cover; border-radius: 40px; 
@@ -130,15 +114,14 @@
     /* Final Hero */
     .final-hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     .final-hero h1 { 
-        font-size: 4rem; letter-spacing: 12px; color: #66CCFF; /* neon-like blue */
-        text-transform: uppercase; font-weight: 800; 
-        text-shadow: none;
+        font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); 
+        text-shadow: var(--neon-glow), 2px 2px 15px rgba(0,0,0,0.4); 
     }
 
-    /* Sub Pages - centered title at top, darker blue background for readability */
+    /* Sub Pages - centered title at top, neon glow text for contrast */
     .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
     .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); }
-    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: #66CCFF; text-shadow: none; text-align: center; }
+    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: var(--primary-accent); text-shadow: var(--neon-glow); text-align: center; }
     p.page-text { font-size: 1.2rem; line-height: 2; margin-bottom: 20px; }
 </style>
 </head>
@@ -150,7 +133,7 @@
 <nav>
     <ul>
         <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
-        <!-- Design first from left -->
+        <!-- Place "DESIGN" first from left -->
         <li>
             <a>DESIGN</a>
             <div class="dropdown" id="design-dropdown">
@@ -160,7 +143,7 @@
                 <a onclick="showPage('systems-page')">SYSTEMS/UI</a>
             </div>
         </li>
-        <!-- Practicality second -->
+        <!-- "PRACTICALITY" second -->
         <li>
             <a>PRACTICALITY</a>
             <div class="dropdown" id="practicality-dropdown">
@@ -174,7 +157,7 @@
     </ul>
 </nav>
 
-<!-- HOME PAGE -->
+<!-- HOME PAGE (Original design, no glass boxes, neon glow, background, large header) -->
 <div id="home-page" class="page active">
     <section id="hero-header">
         <h1>Humans have always dreamed of flight</h1>
@@ -182,22 +165,19 @@
     <!-- Main Video -->
     <div class="main-video-section">
         <div class="video-box">
-            <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0"></iframe>
         </div>
     </div>
-    <!-- Bottom videos in horizontal layout -->
-    <div class="bottom-videos-container">
-        <!-- First large video to the left -->
-        <div class="bottom-video" style="align-self:flex-start;">
-            <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0"></iframe>
+    <!-- Bottom videos: large, horizontal layout with specified positions -->
+    <div style="display:flex; justify-content: space-between; padding:20px; flex-wrap: wrap;">
+        <div style="flex:1; min-width:300px; margin-right:10px;">
+            <iframe style="width:100%; height:200px;" src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0"></iframe>
         </div>
-        <!-- Second large video to the right -->
-        <div class="bottom-video" style="align-self:flex-start;">
-            <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0"></iframe>
+        <div style="flex:1; min-width:300px; margin:0 10px;">
+            <iframe style="width:100%; height:200px;" src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0"></iframe>
         </div>
-        <!-- Third large video to the left -->
-        <div class="bottom-video" style="align-self:flex-start;">
-            <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0"></iframe>
+        <div style="flex:1; min-width:300px; margin-left:10px;">
+            <iframe style="width:100%; height:200px;" src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0"></iframe>
         </div>
     </div>
     <!-- Text content -->
