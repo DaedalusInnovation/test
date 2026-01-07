@@ -40,7 +40,7 @@
     nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
     nav ul li { position: relative; }
     nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; padding: 10px 15px; display: block; }
-    nav ul li a:hover { color: #66CCFF; /* closer to neon blue */ }
+    nav ul li a:hover { color: #66CCFF; }
 
     /* Dropdown styles - larger, with backlight */
     .dropdown { 
@@ -77,6 +77,22 @@
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
     .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* Large horizontal videos - first, second, third */
+    .bottom-videos-container {
+        display: flex; justify-content: space-between; align-items: flex-start; width: 100%; padding: 20px;
+        gap: 20px;
+    }
+    .bottom-video {
+        flex: 1; /* grow equally */
+        min-width: 300px;
+        max-width: 48%;
+        height: 200px; /* large height for long horizontal videos */
+        position: relative;
+    }
+    .bottom-video iframe {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
 
     /* Text styles: darker blue for readability, no boxes, subtle backlight */
     .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
@@ -169,23 +185,22 @@
             <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         </div>
     </div>
-    <!-- Scroll videos -->
-    <div class="scroll-video-row left-align reveal">
-        <div class="wide-video">
-            <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
+    <!-- Bottom videos in horizontal layout -->
+    <div class="bottom-videos-container">
+        <!-- First large video to the left -->
+        <div class="bottom-video" style="align-self:flex-start;">
+            <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0"></iframe>
+        </div>
+        <!-- Second large video to the right -->
+        <div class="bottom-video" style="align-self:flex-start;">
+            <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0"></iframe>
+        </div>
+        <!-- Third large video to the left -->
+        <div class="bottom-video" style="align-self:flex-start;">
+            <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0"></iframe>
         </div>
     </div>
-    <div class="scroll-video-row right-align reveal">
-        <div class="wide-video">
-            <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
-        </div>
-    </div>
-    <div class="scroll-video-row left-align reveal">
-        <div class="wide-video">
-            <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
-        </div>
-    </div>
-    <!-- Text content with royal blue, no boxes, slight darker blue backlight -->
+    <!-- Text content -->
     <div class="text-break reveal">
         <h2>These are amazing feats of engineering, yet they still fall short of the true, unencumbered flight experience humans desire.</h2>
     </div>
@@ -239,7 +254,7 @@
             <p class="page-text">Wings are the fundamental aerodynamic surfaces that enable flight. Advanced morphing wing designs can adapt shape for different flight modes, improving efficiency and maneuverability. Incorporate flexible materials and smart sensors to optimize performance in real-time.</p>
             <p class="page-text">Videos and images illustrating morphing wings, flexible composites, and wingtip designs will go here as you scroll.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
@@ -253,7 +268,7 @@
             <p class="page-text">The body of the aircraft integrates lightweight materials, aerodynamic shaping, and embedded systems for control and stability. Use advanced composites like graphene and carbon fiber to reduce weight while maintaining strength.</p>
             <p class="page-text">Scroll down for detailed images and videos on body design innovations.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
@@ -267,7 +282,7 @@
             <p class="page-text">The tail provides stability and directional control. Modern tail designs incorporate active control surfaces and neural interfaces for intuitive pilot input. Materials are optimized for minimal drag and maximum control authority.</p>
             <p class="page-text">Scroll for videos and images demonstrating tail innovations.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
@@ -281,7 +296,7 @@
             <p class="page-text">The control systems and user interfaces are critical for seamless operation. Incorporate neural links, AR displays, and intuitive controls for pilot ease and safety. Use AI for real-time diagnostics and system optimization.</p>
             <p class="page-text">Scroll for videos and images about cockpit design, neural interface tech, and AI systems.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
@@ -295,7 +310,7 @@
             <p class="page-text">Safety features include ballistic recovery parachutes, redundant systems, and real-time diagnostics to ensure pilot protection. Advanced sensors monitor structural integrity and environmental conditions for immediate response.</p>
             <p class="page-text">Scroll for videos and images demonstrating safety innovations and fail-safe systems.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
@@ -309,7 +324,7 @@
             <p class="page-text">The structure uses lightweight, durable composites for maximum strength and minimum weight. Modular designs facilitate maintenance and upgrades. Focus on aerodynamics and material resilience to optimize overall integrity.</p>
             <p class="page-text">Scroll for videos and images demonstrating structural innovations.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
@@ -323,7 +338,7 @@
             <p class="page-text">Cost considerations focus on scalable manufacturing, material costs, and maintenance expenses. Using advanced composites and modular parts helps reduce long-term costs while maintaining high performance.</p>
             <p class="page-text">Scroll for videos and images demonstrating cost-effective design and production methods.</p>
             <div class="video-box" style="margin-top:20px;">
-                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1" frameborder="0"></iframe>
+                <iframe src="https://www.youtube.com/embed/your-video-id?autoplay=0&mute=0&controls=1"></iframe>
             </div>
         </div>
     </div>
