@@ -8,7 +8,7 @@
 <style>
     /* 1. VARIABLE CONTROL CENTER */
     :root {
-        --primary-accent: #006699; /* Darker blue for accent */
+        --primary-accent: #006699; /* Medium/royal blue for accents */
         --text-main: #ffffff;
         --glass-bg: rgba(0, 0, 0, 0.4); 
         --border-color: rgba(255, 255, 255, 0.25);
@@ -16,7 +16,7 @@
         --main-bg-image: url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1920');
         --transition-speed: 0.8s;      
         --nav-height: 80px;
-        /* No neon glow variables; using darker shades */
+        /* No neon glow, use medium blue */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,19 +35,19 @@
         z-index: -2; 
     }
     
-    /* STATIC OVERLAY (No dynamic darkening) */
+    /* STATIC OVERLAY (Darker blue tint) for visibility */
     .bg-dimmer { 
         position: fixed; 
         top: 0; 
         left: 0; 
         width: 100vw; 
         height: 100vh; 
-        background: rgba(0, 0, 0, 0.2); /* Slightly darker overlay */
+        background: rgba(0, 0, 50, 0.2); /* Slight darker blue overlay */
         z-index: -1; 
         pointer-events: none; 
     }
 
-    /* Navigation */
+    /* Navigation styles */
     nav { 
         position: fixed; top: 0; width: 100%; height: var(--nav-height); 
         z-index: 9999; display: flex; justify-content: center; align-items: center; 
@@ -56,9 +56,9 @@
     nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
     nav ul li { position: relative; }
     nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; padding: 10px 15px; display: block; }
-    nav ul li a:hover { color: #003366; /* Darker blue for hover */ }
+    nav ul li a:hover { color: #006699; /* medium/royal blue hover */ }
 
-    /* Dropdown styles - larger, with backlight */
+    /* Dropdown styles - larger with backlight */
     .dropdown { 
         position: absolute; 
         top: var(--nav-height); 
@@ -67,22 +67,18 @@
         border-radius: 8px; 
         display: flex; 
         flex-direction: column; 
-        min-width: 200px; /* Larger width */
+        min-width: 200px; 
         padding: 10px 0;
         opacity: 0; 
-        transform: translateY(-10px); /* Slight offset for animation */
+        transform: translateY(-10px); 
         transition: opacity 0.3s ease, transform 0.3s ease;
         z-index: 10000;
     }
-
-    /* Show dropdown on hover with delay (handled in JS) */
     li:hover .dropdown { 
         opacity: 1; 
         transform: translateY(0); 
         pointer-events: auto; 
     }
-
-    /* Dropdown items styling */
     .dropdown a { padding: 10px 20px; font-size: 1rem; color: var(--text-main); text-decoration: none; }
     .dropdown a:hover { background-color: rgba(255,255,255,0.1); }
 
@@ -91,19 +87,20 @@
     .page.active { display: block; }
 
     /* -----------------------------------------------------------
-       2. HOME PAGE (DARKER BLUE TEXT, NO NEON GLOW)
+       2. HOME PAGE with blue text in medium/royal shade, no boxes around headings,
+       slight darker blue backlight for visibility
     ----------------------------------------------------------- */
     
     #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     #hero-header h1 { 
         font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; 
         max-width: 1000px; padding: 0 20px; line-height: 1.2;
-        /* Removed neon glow and added black backlight effect for better visibility */
-        background-color: rgba(0,0,0,0.3);
+        background-color: rgba(0,0,50,0.3); /* slight darker blue backlight */
         padding: 20px;
         display: inline-block;
         border-radius: 10px;
-        color: #001f33; /* Darker text for better contrast */
+        color: #336699; /* medium/royal blue for main header text */
+        text-shadow: none; /* no neon glow */
     }
 
     .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
@@ -123,21 +120,19 @@
         background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     }
     .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
-    .left-align { justify-content: flex-start; }
-    .right-align { justify-content: flex-end; }
 
-    /* Headings styled darker, no neon glow, with subtle backlight for better visibility */
+    /* Darker, medium/royal blue text for headings and paragraphs with subtle backlight for readability */
     .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
     .text-break.active { opacity: 1; transform: translateY(0); }
     .text-break h2 { 
         font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 400; 
-        color: #003366; /* Darker blue for readability */
-        background-color: rgba(0,0,0,0.2);
+        color: #336699; /* medium/royal blue */
+        background-color: rgba(0,0,50,0.2);
         padding: 10px;
         border-radius: 8px;
         display: inline-block;
     }
-    .intro-section h2 { color: #003366; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
+    .intro-section h2 { color: #336699; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
 
     /* Feature Sections with darker text for readability */
     .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 120px auto; height: 85vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
@@ -146,7 +141,6 @@
         border: 1px solid var(--border-color); filter: brightness(0.85); 
         transition: 1s; box-shadow: 0 25px 60px rgba(0,0,0,0.3);
     }
-    
     .feature-box { 
         position: absolute; width: 330px; padding: 2.5rem; background: var(--glass-bg); 
         backdrop-filter: blur(30px); border: 1px solid var(--border-color); border-radius: 25px; 
@@ -163,15 +157,15 @@
     /* Final Hero */
     .final-hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     .final-hero h1 { 
-        font-size: 4rem; letter-spacing: 12px; color: #006699; /* darker accent */
+        font-size: 4rem; letter-spacing: 12px; color: #336699; /* medium/royal blue */
         text-transform: uppercase; font-weight: 800; 
-        text-shadow: none; /* remove neon glow */
+        text-shadow: none;
     }
 
-    /* Sub Pages - centered title at top, dark background for readability */
+    /* Sub Pages - centered title at top, darker blue background for readability */
     .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
     .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); }
-    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: #006699; text-shadow: none; text-align: center; }
+    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: #336699; text-shadow: none; text-align: center; }
     p.page-text { font-size: 1.2rem; line-height: 2; margin-bottom: 20px; }
 </style>
 </head>
@@ -183,7 +177,7 @@
 <nav>
     <ul>
         <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
-        <!-- Switch order: DESIGN first from left -->
+        <!-- Design first from left -->
         <li>
             <a>DESIGN</a>
             <div class="dropdown" id="design-dropdown">
@@ -193,7 +187,7 @@
                 <a onclick="showPage('systems-page')">SYSTEMS/UI</a>
             </div>
         </li>
-        <!-- PRACTICALITY second -->
+        <!-- Practicality second -->
         <li>
             <a>PRACTICALITY</a>
             <div class="dropdown" id="practicality-dropdown">
