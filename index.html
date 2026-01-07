@@ -8,7 +8,7 @@
 <style>
     /* 1. VARIABLE CONTROL CENTER */
     :root {
-        --primary-accent: #00d4ff;    
+        --primary-accent: #006699; /* Darker blue for accent */
         --text-main: #ffffff;
         --glass-bg: rgba(0, 0, 0, 0.4); 
         --border-color: rgba(255, 255, 255, 0.25);
@@ -16,7 +16,7 @@
         --main-bg-image: url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1920');
         --transition-speed: 0.8s;      
         --nav-height: 80px;
-        /* Removed neon glow for blue text, so no --neon-glow variable */
+        /* No neon glow variables; using darker shades */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,7 +42,7 @@
         left: 0; 
         width: 100vw; 
         height: 100vh; 
-        background: rgba(0, 40, 80, 0.1); 
+        background: rgba(0, 0, 0, 0.2); /* Slightly darker overlay */
         z-index: -1; 
         pointer-events: none; 
     }
@@ -56,9 +56,9 @@
     nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
     nav ul li { position: relative; }
     nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; padding: 10px 15px; display: block; }
-    nav ul li a:hover { color: var(--primary-accent); /* Removed text-shadow for neon glow */ }
+    nav ul li a:hover { color: #003366; /* Darker blue for hover */ }
 
-    /* Dropdown styles - larger size and transition */
+    /* Dropdown styles - larger, with backlight */
     .dropdown { 
         position: absolute; 
         top: var(--nav-height); 
@@ -82,7 +82,7 @@
         pointer-events: auto; 
     }
 
-    /* Dropdown items */
+    /* Dropdown items styling */
     .dropdown a { padding: 10px 20px; font-size: 1rem; color: var(--text-main); text-decoration: none; }
     .dropdown a:hover { background-color: rgba(255,255,255,0.1); }
 
@@ -91,22 +91,26 @@
     .page.active { display: block; }
 
     /* -----------------------------------------------------------
-       2. HOME PAGE (NEON BLUE BACKLIGHTING)
+       2. HOME PAGE (DARKER BLUE TEXT, NO NEON GLOW)
     ----------------------------------------------------------- */
     
     #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     #hero-header h1 { 
         font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; 
         max-width: 1000px; padding: 0 20px; line-height: 1.2;
-        /* Removed text-shadow to eliminate neon glow for blue text */
-        /* Removed neon-glow variable, so no text-shadow here */
+        /* Removed neon glow and added black backlight effect for better visibility */
+        background-color: rgba(0,0,0,0.3);
+        padding: 20px;
+        display: inline-block;
+        border-radius: 10px;
+        color: #001f33; /* Darker text for better contrast */
     }
 
     .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
     .video-box { 
         position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
         border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
     .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
@@ -122,17 +126,20 @@
     .left-align { justify-content: flex-start; }
     .right-align { justify-content: flex-end; }
 
-    /* Headings with styled text (no neon glow) */
+    /* Headings styled darker, no neon glow, with subtle backlight for better visibility */
     .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
     .text-break.active { opacity: 1; transform: translateY(0); }
     .text-break h2 { 
         font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 400; 
-        /* Removed neon glow */
-        color: #004080; /* Darker blue for readability */
+        color: #003366; /* Darker blue for readability */
+        background-color: rgba(0,0,0,0.2);
+        padding: 10px;
+        border-radius: 8px;
+        display: inline-block;
     }
-    .intro-section h2 { color: #004080; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
+    .intro-section h2 { color: #003366; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
 
-    /* Feature Sections */
+    /* Feature Sections with darker text for readability */
     .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 120px auto; height: 85vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
     .feature-img { 
         width: 80%; height: 85%; object-fit: cover; border-radius: 40px; 
@@ -153,20 +160,18 @@
     .top-right { top: 0; right: 0; }
     .bottom-left { bottom: 0; left: 0; }
 
-    /* Final Closing Hero */
+    /* Final Hero */
     .final-hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     .final-hero h1 { 
-        font-size: 4rem; letter-spacing: 12px; color: var(--primary-accent); 
+        font-size: 4rem; letter-spacing: 12px; color: #006699; /* darker accent */
         text-transform: uppercase; font-weight: 800; 
-        text-shadow: var(--neon-glow), 2px 2px 15px rgba(0,0,0,0.4); 
+        text-shadow: none; /* remove neon glow */
     }
 
-    /* Sub Pages */
+    /* Sub Pages - centered title at top, dark background for readability */
     .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
     .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); }
-
-    /* Page titles centered at top */
-    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: var(--primary-accent); text-shadow: var(--neon-glow); text-align: center; }
+    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: #006699; text-shadow: none; text-align: center; }
     p.page-text { font-size: 1.2rem; line-height: 2; margin-bottom: 20px; }
 </style>
 </head>
@@ -178,17 +183,7 @@
 <nav>
     <ul>
         <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
-        <!-- Remove About -->
-        <!-- Add PRACTICALITY dropdown -->
-        <li>
-            <a>PRACTICALITY</a>
-            <div class="dropdown" id="practicality-dropdown">
-                <a onclick="showPage('safety-page')">SAFETY</a>
-                <a onclick="showPage('structure-page')">STRUCTURE</a>
-                <a onclick="showPage('cost-page')">COST</a>
-            </div>
-        </li>
-        <!-- Add DESIGN dropdown -->
+        <!-- Switch order: DESIGN first from left -->
         <li>
             <a>DESIGN</a>
             <div class="dropdown" id="design-dropdown">
@@ -198,8 +193,17 @@
                 <a onclick="showPage('systems-page')">SYSTEMS/UI</a>
             </div>
         </li>
+        <!-- PRACTICALITY second -->
+        <li>
+            <a>PRACTICALITY</a>
+            <div class="dropdown" id="practicality-dropdown">
+                <a onclick="showPage('safety-page')">SAFETY</a>
+                <a onclick="showPage('structure-page')">STRUCTURE</a>
+                <a onclick="showPage('cost-page')">COST</a>
+            </div>
+        </li>
         <li><a onclick="showPage('contact-page')">CONTACT</a></li>
-        <li><a onclick="showPage('learn-page')">LEARN MORE</a></li>
+        <!-- Removed LEARN MORE -->
     </ul>
 </nav>
 
@@ -208,14 +212,12 @@
     <section id="hero-header">
         <h1>Humans have always dreamed of flight</h1>
     </section>
-
     <!-- Main Video -->
     <div class="main-video-section">
         <div class="video-box">
             <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         </div>
     </div>
-
     <!-- Scroll videos -->
     <div class="scroll-video-row left-align reveal">
         <div class="wide-video">
@@ -232,14 +234,12 @@
             <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
         </div>
     </div>
-
     <div class="text-break reveal">
         <h2>These are amazing feats of engineering, yet they still fall short of the true, unencumbered flight experience humans desire.</h2>
     </div>
     <div class="text-break intro-section reveal">
         <h2>How we can improve:</h2>
     </div>
-
     <!-- FEATURE 1: WINGS -->
     <div class="feature-container reveal">
         <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img" />
@@ -252,7 +252,6 @@
             Our skeletal structures use advanced graphene composites that remain virtually weightless while sustaining extreme air pressure.
         </div>
     </div>
-
     <!-- FEATURE 2: PROPULSION -->
     <div class="feature-container reveal">
         <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img" />
@@ -265,7 +264,6 @@
             An integrated ballistic recovery parachute deploys automatically in milliseconds, providing an absolute failsafe for the pilot.
         </div>
     </div>
-
     <!-- FEATURE 3: TAIL -->
     <div class="feature-container reveal">
         <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img" />
@@ -278,7 +276,6 @@
             Translating pilot joint movements into aerofoil control via a high-speed network of distributed bio-sensors.
         </div>
     </div>
-
     <section class="final-hero reveal">
         <h1>Putting these together, the FALCON is made.</h1>
     </section>
@@ -389,17 +386,6 @@
             <h1 style="text-shadow: var(--neon-glow);">Contact</h1>
             <p style="margin: 30px 0; font-size: 1.5rem;">daedalusinnovation@gmail.com</p>
             <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" style="width: 80px; filter: invert(1);" />
-        </div>
-    </div>
-</div>
-
-<!-- LEARN MORE PAGE -->
-<div id="learn-page" class="page">
-    <div class="sub-wrap">
-        <div class="glass-panel">
-            <h1 style="text-shadow: var(--neon-glow);">Technical Whitepaper</h1>
-            <p style="margin: 20px 0;">Technical specifications are currently being updated.</p>
-            <a href="#" style="background:var(--primary-accent); color:#000; padding: 20px 40px; text-decoration:none; font-weight:800; border-radius:50px; display:inline-block;">DOWNLOAD PDF</a>
         </div>
     </div>
 </div>
