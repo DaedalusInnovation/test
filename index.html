@@ -16,38 +16,22 @@
         --main-bg-image: url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1920');
         --transition-speed: 0.8s;      
         --nav-height: 80px;
-        /* No neon glow, use medium blue */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: #7ab8ef; overflow-x: hidden; }
 
-    /* FIXED BACKGROUND ENGINE */
+    /* BACKGROUND */
     .bg-fixed { 
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        width: 100vw; 
-        height: 100vh; 
-        background-image: var(--main-bg-image); 
-        background-size: cover; 
-        background-position: center; 
-        z-index: -2; 
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+        background-image: var(--main-bg-image); background-size: cover; background-position: center; z-index: -2; 
     }
-    
-    /* STATIC OVERLAY (Darker blue tint) for visibility */
     .bg-dimmer { 
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        width: 100vw; 
-        height: 100vh; 
-        background: rgba(0, 0, 50, 0.2); /* Slight darker blue overlay */
-        z-index: -1; 
-        pointer-events: none; 
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+        background: rgba(0, 0, 50, 0.2); z-index: -1; pointer-events: none; 
     }
 
-    /* Navigation styles */
+    /* NAVIGATION */
     nav { 
         position: fixed; top: 0; width: 100%; height: var(--nav-height); 
         z-index: 9999; display: flex; justify-content: center; align-items: center; 
@@ -56,29 +40,13 @@
     nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
     nav ul li { position: relative; }
     nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; padding: 10px 15px; display: block; }
-    nav ul li a:hover { color: #006699; /* medium/royal blue hover */ }
+    nav ul li a:hover { color: #66CCFF; /* closer to neon blue */ }
 
-    /* Dropdown styles - larger with backlight */
+    /* Dropdown styles - larger, with backlight */
     .dropdown { 
-        position: absolute; 
-        top: var(--nav-height); 
-        left: 0; 
-        background: rgba(0,20,40,0.8); 
-        border-radius: 8px; 
-        display: flex; 
-        flex-direction: column; 
-        min-width: 200px; 
-        padding: 10px 0;
-        opacity: 0; 
-        transform: translateY(-10px); 
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        z-index: 10000;
+        position: absolute; top: var(--nav-height); left: 0; background: rgba(0,20,40,0.8); border-radius: 8px; display: flex; flex-direction: column; min-width: 200px; padding: 10px 0; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 10000;
     }
-    li:hover .dropdown { 
-        opacity: 1; 
-        transform: translateY(0); 
-        pointer-events: auto; 
-    }
+    li:hover .dropdown { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .dropdown a { padding: 10px 20px; font-size: 1rem; color: var(--text-main); text-decoration: none; }
     .dropdown a:hover { background-color: rgba(255,255,255,0.1); }
 
@@ -87,8 +55,7 @@
     .page.active { display: block; }
 
     /* -----------------------------------------------------------
-       2. HOME PAGE with blue text in medium/royal shade, no boxes around headings,
-       slight darker blue backlight for visibility
+       HOME PAGE with blue text closer to neon, no boxes, slight darker blue backlight
     ----------------------------------------------------------- */
     
     #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
@@ -99,7 +66,7 @@
         padding: 20px;
         display: inline-block;
         border-radius: 10px;
-        color: #336699; /* medium/royal blue for main header text */
+        color: #66CCFF; /* closer to neon blue for headers */
         text-shadow: none; /* no neon glow */
     }
 
@@ -111,30 +78,20 @@
     }
     .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-    /* Scrolling horizontal videos */
-    .scroll-video-row { width: 100%; padding: 60px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
-    .scroll-video-row.active { opacity: 1; transform: translateY(0); }
-    .wide-video { 
-        width: 75%; aspect-ratio: 21 / 9; border-radius: 20px; 
-        border: 1px solid var(--border-color); overflow: hidden; 
-        background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-    .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
-
-    /* Darker, medium/royal blue text for headings and paragraphs with subtle backlight for readability */
+    /* Text styles: darker blue for readability, no boxes, subtle backlight */
     .text-break { text-align: center; padding: 150px 15%; opacity: 0; transform: translateY(30px); transition: 1s; }
     .text-break.active { opacity: 1; transform: translateY(0); }
     .text-break h2 { 
         font-size: 2.5rem; letter-spacing: 5px; line-height: 1.5; font-weight: 400; 
-        color: #336699; /* medium/royal blue */
+        color: #66CCFF; /* neon blue for headings and texts */
         background-color: rgba(0,0,50,0.2);
         padding: 10px;
         border-radius: 8px;
         display: inline-block;
     }
-    .intro-section h2 { color: #336699; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
+    .intro-section h2 { color: #66CCFF; font-weight: 800; font-size: 2.8rem; text-transform: uppercase; }
 
-    /* Feature Sections with darker text for readability */
+    /* Feature Sections with neon blue text for readability */
     .feature-container { position: relative; width: 100%; max-width: 1300px; margin: 120px auto; height: 85vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
     .feature-img { 
         width: 80%; height: 85%; object-fit: cover; border-radius: 40px; 
@@ -157,7 +114,7 @@
     /* Final Hero */
     .final-hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     .final-hero h1 { 
-        font-size: 4rem; letter-spacing: 12px; color: #336699; /* medium/royal blue */
+        font-size: 4rem; letter-spacing: 12px; color: #66CCFF; /* neon-like blue */
         text-transform: uppercase; font-weight: 800; 
         text-shadow: none;
     }
@@ -165,7 +122,7 @@
     /* Sub Pages - centered title at top, darker blue background for readability */
     .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
     .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); }
-    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: #336699; text-shadow: none; text-align: center; }
+    h1.page-title { font-size: 3rem; margin-bottom: 20px; color: #66CCFF; text-shadow: none; text-align: center; }
     p.page-text { font-size: 1.2rem; line-height: 2; margin-bottom: 20px; }
 </style>
 </head>
@@ -197,7 +154,7 @@
             </div>
         </li>
         <li><a onclick="showPage('contact-page')">CONTACT</a></li>
-        <!-- Removed LEARN MORE -->
+        <!-- Removed "LEARN MORE" -->
     </ul>
 </nav>
 
@@ -228,13 +185,14 @@
             <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
         </div>
     </div>
+    <!-- Text content with royal blue, no boxes, slight darker blue backlight -->
     <div class="text-break reveal">
         <h2>These are amazing feats of engineering, yet they still fall short of the true, unencumbered flight experience humans desire.</h2>
     </div>
     <div class="text-break intro-section reveal">
         <h2>How we can improve:</h2>
     </div>
-    <!-- FEATURE 1: WINGS -->
+    <!-- Feature sections -->
     <div class="feature-container reveal">
         <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1200" class="feature-img" />
         <div class="feature-box top-left">
@@ -246,7 +204,6 @@
             Our skeletal structures use advanced graphene composites that remain virtually weightless while sustaining extreme air pressure.
         </div>
     </div>
-    <!-- FEATURE 2: PROPULSION -->
     <div class="feature-container reveal">
         <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200" class="feature-img" />
         <div class="feature-box top-right">
@@ -258,7 +215,6 @@
             An integrated ballistic recovery parachute deploys automatically in milliseconds, providing an absolute failsafe for the pilot.
         </div>
     </div>
-    <!-- FEATURE 3: TAIL -->
     <div class="feature-container reveal">
         <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" class="feature-img" />
         <div class="feature-box top-left">
@@ -385,7 +341,7 @@
 </div>
 
 <script>
-    // NAVIGATION LOGIC
+    // NAVIGATION
     function showPage(pageId, pushToHistory = true) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         const targetPage = document.getElementById(pageId);
@@ -399,7 +355,7 @@
     window.addEventListener('popstate', (e) => showPage(e.state ? e.state.pageId : 'home-page', false));
     window.addEventListener('load', () => { if (window.location.hash) showPage(window.location.hash.replace('#', ''), false); });
 
-    // Dropdown hover delay logic for PRACTICALITY
+    // Dropdown delay logic for PRACTICALITY
     const practicalityTimeouts = {};
     document.querySelectorAll('nav ul li').forEach(li => {
         const dropdown = li.querySelector('.dropdown');
@@ -424,7 +380,6 @@
             }
         });
     }, { threshold: 0.15 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
