@@ -146,35 +146,14 @@
     <div class="bg-fixed"></div>
     <div class="bg-dimmer"></div>
 
-    <!-- Your existing code up to <nav> remains unchanged -->
-
-<nav>
-    <ul>
-        <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
-        <!-- Place "DESIGN" first from the left -->
-        <li>
-            <a>DESIGN</a>
-            <div class="dropdown" id="design-dropdown">
-                <a onclick="showPage('wings-page')">WINGS</a>
-                <a onclick="showPage('body-page')">BODY</a>
-                <a onclick="showPage('tail-page')">TAIL</a>
-                <a onclick="showPage('systems-page')">SYSTEMS/UI</a>
-            </div>
-        </li>
-        <!-- "PRACTICALITY" second -->
-        <li>
-            <a>PRACTICALITY</a>
-            <div class="dropdown" id="practicality-dropdown">
-                <a onclick="showPage('safety-page')">SAFETY</a>
-                <a onclick="showPage('structure-page')">STRUCTURE</a>
-                <a onclick="showPage('cost-page')">COST</a>
-            </div>
-        </li>
-        <li><a onclick="showPage('contact-page')">CONTACT</a></li>
-        <!-- You already have about and others -->
-    </ul>
-</nav>
-<!-- Rest of your code remains unchanged -->
+    <nav>
+        <ul>
+            <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
+            <li><a onclick="showPage('about-page')">ABOUT</a></li>
+            <li><a onclick="showPage('contact-page')">CONTACT</a></li>
+            <li><a onclick="showPage('learn-page')">LEARN MORE</a></li>
+        </ul>
+    </nav>
 
     <!-- HOME PAGE -->
     <div id="home-page" class="page active">
