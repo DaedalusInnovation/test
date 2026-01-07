@@ -62,7 +62,7 @@
             background: rgba(0,20,40,0.3); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); 
         }
         nav ul { display: flex; list-style: none; gap: 45px; align-items: center; }
-        nav ul li { position: relative; } /* Needed for dropdown positioning */
+        nav ul li { position: relative; } 
         nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; transition: 0.3s; cursor: pointer; display: block; padding: 10px 0; }
         nav ul li a:hover { color: var(--primary-accent); text-shadow: var(--neon-glow); }
 
@@ -181,10 +181,10 @@
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); margin-bottom: 50px; }
         
-        .design-page-header {
+        .sub-page-header {
             text-align: center; margin-bottom: 80px;
         }
-        .design-page-header h1 {
+        .sub-page-header h1 {
             font-size: 4rem; color: var(--primary-accent); text-transform: uppercase;
             text-shadow: var(--neon-glow); margin-bottom: 20px;
         }
@@ -222,6 +222,15 @@
                     <li><a onclick="showPage('body-page')">BODY</a></li>
                     <li><a onclick="showPage('tail-page')">TAIL</a></li>
                     <li><a onclick="showPage('systems-page')">SYSTEMS/UI</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">PRACTICALITY</a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showPage('safety-page')">SAFETY</a></li>
+                    <li><a onclick="showPage('structure-page')">STRUCTURE</a></li>
+                    <li><a onclick="showPage('cost-page')">COST</a></li>
                 </ul>
             </li>
 
@@ -312,7 +321,7 @@
 
     <div id="wings-page" class="page">
         <div class="sub-wrap">
-            <div class="design-page-header">
+            <div class="sub-page-header">
                 <h1>WINGS</h1>
                 <p style="font-size:1.5rem;">Adaptive Morphing Aerodynamics</p>
             </div>
@@ -331,7 +340,7 @@
                     Using pneumatic actuators woven directly into the fabric, the camber of the wing can be adjusted 500 times per second. This results in zero-stall capability at low speeds and extreme maneuverability in high-G environments.
                 </p>
                 <div class="media-placeholder">
-                    <iframe src="https://www.youtube.com/embed/videoid?autoplay=0&mute=1&controls=0" style="width:100%; height:100%; border:0;" title="Wing Actuation Simulation (Placeholder)"></iframe>
+                    VIDEO: Wing Actuation Simulation
                 </div>
             </div>
         </div>
@@ -339,7 +348,7 @@
 
     <div id="body-page" class="page">
         <div class="sub-wrap">
-            <div class="design-page-header">
+            <div class="sub-page-header">
                 <h1>BODY</h1>
                 <p style="font-size:1.5rem;">The Fuselage of the Future</p>
             </div>
@@ -366,7 +375,7 @@
 
     <div id="tail-page" class="page">
         <div class="sub-wrap">
-            <div class="design-page-header">
+            <div class="sub-page-header">
                 <h1>TAIL</h1>
                 <p style="font-size:1.5rem;">Precision Vectoring & Stabilization</p>
             </div>
@@ -379,18 +388,12 @@
                     <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?q=80&w=1200" alt="Tail Aerodynamics">
                 </div>
             </div>
-
-            <div class="glass-panel content-block reveal">
-                <p class="text-content">
-                    The tail also houses the emergency Ballistic Recovery System (BRS). In the event of total system failure, a rocket-deployed parachute ejects from the tail cone, safely lowering the pilot and the suit from altitudes as low as 100 feet.
-                </p>
-            </div>
         </div>
     </div>
 
     <div id="systems-page" class="page">
         <div class="sub-wrap">
-            <div class="design-page-header">
+            <div class="sub-page-header">
                 <h1>SYSTEMS / UI</h1>
                 <p style="font-size:1.5rem;">Augmented Reality Flight Deck</p>
             </div>
@@ -415,6 +418,86 @@
         </div>
     </div>
 
+    <div id="safety-page" class="page">
+        <div class="sub-wrap">
+            <div class="sub-page-header">
+                <h1>SAFETY</h1>
+                <p style="font-size:1.5rem;">Redundancy & Recovery</p>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Flight requires trust in your machine. The FALCON is built on a "Triple-Redundant" architecture. Every control surface, sensor, and battery cell has two independent backups. If a primary processor fails, the secondary takes over in less than 4 milliseconds, imperceptible to the pilot.
+                </p>
+                <div class="media-placeholder">
+                    <img src="https://images.unsplash.com/photo-1626265774643-f1943311a86b?q=80&w=1200" alt="Safety Systems">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    <strong>The Ultimate Failsafe:</strong> The Ballistic Recovery System (BRS). Should the flight envelope be compromised beyond recovery, a solid-fuel rocket deploys a 50ft canopy parachute. This system is completely mechanical, meaning it works even in the event of total electrical failure.
+                </p>
+                <div class="media-placeholder">
+                    VIDEO: Parachute Deployment Test
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="structure-page" class="page">
+        <div class="sub-wrap">
+            <div class="sub-page-header">
+                <h1>STRUCTURE</h1>
+                <p style="font-size:1.5rem;">Materials Science & Integrity</p>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    The FALCON frame is not welded; it is printed. Using generative design AI, we 3D print titanium nodes connected by carbon fiber tubes. This results in a skeletal structure that places material only where load paths exist, reducing weight by 40% compared to traditional aluminum frames.
+                </p>
+                <div class="media-placeholder">
+                    <img src="https://images.unsplash.com/photo-1581093458891-7731559424b0?q=80&w=1200" alt="3D Printed Structure">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Every unit undergoes "Digital Twin" stress testing. Before a physical part is made, it is subjected to millions of simulated flight hours, extreme weather, and impact scenarios to ensure the physical structure exceeds aerospace safety margins.
+                </p>
+                <div class="media-placeholder">
+                    VIDEO: Structural Stress Test
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cost-page" class="page">
+        <div class="sub-wrap">
+            <div class="sub-page-header">
+                <h1>COST</h1>
+                <p style="font-size:1.5rem;">Accessibility & Market Economics</p>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    Personal flight has historically been reserved for the ultra-wealthy. Daedalus Innovation challenges this paradigm. By utilizing additive manufacturing and off-the-shelf EV battery technology, we reduce production costs significantly compared to traditional light aircraft.
+                </p>
+                <div class="media-placeholder">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200" alt="Market Graph">
+                </div>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <p class="text-content">
+                    <strong>Projected Market Entry:</strong> Initial units are targeted at the high-end recreational market, similar to luxury sports cars. As manufacturing scales and battery costs plummet, the FALCON is projected to reach the price point of a standard sedan within 7 years.
+                </p>
+                <div class="media-placeholder">
+                    VIDEO: Manufacturing Line Time-lapse
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="about-page" class="page">
         <div class="sub-wrap">
