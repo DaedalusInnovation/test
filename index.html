@@ -87,7 +87,7 @@
             opacity: 0;
             visibility: hidden;
             
-            /* Delay on the 'exit' */
+            /* The Magic Delay: Transition visibility/opacity with a delay on the 'exit' */
             transition: opacity 0.3s ease, visibility 0s linear 1s; 
         }
 
@@ -101,6 +101,7 @@
         nav ul li:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
+            /* Remove delay when entering so it appears instantly */
             transition: opacity 0.3s ease, visibility 0s linear 0s;
         }
 
@@ -124,7 +125,7 @@
             border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
             box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15);
         }
-        .video-box iframe, .video-box video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* Scrolling horizontal videos */
         .scroll-video-row { width: 100%; padding: 60px 10%; display: flex; opacity: 0; transform: translateY(50px); transition: var(--transition-speed); }
@@ -202,6 +203,22 @@
         .media-placeholder img {
             width: 100%; height: 100%; object-fit: cover; opacity: 0.7;
         }
+
+        /* Specific style for spec list in Wings */
+        .spec-list {
+            list-style: none;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        .spec-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        .spec-list li strong { color: var(--primary-accent); }
         
     </style>
 </head>
@@ -243,13 +260,9 @@
             <h1>Humans have always dreamed of flight</h1>
         </section>
 
-        <!-- FIRST VIDEO UPDATED TO LOCAL REPOSITORY FILE -->
         <div class="main-video-section">
             <div class="video-box">
-                <video autoplay muted loop playsinline style="object-fit: cover;">
-                    <source src="test%201%20-%20Made%20with%20Clipchamp.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             </div>
         </div>
 
@@ -324,12 +337,15 @@
         <div class="sub-wrap">
             <div class="sub-page-header">
                 <h1>WINGS</h1>
-                <p style="font-size:1.5rem;">Adaptive Morphing Aerodynamics</p>
+                <p style="font-size:1.5rem;">One Wing. Every Function.</p>
             </div>
             
             <div class="glass-panel content-block reveal">
+                <h2 style="color:var(--primary-accent); margin-bottom:15px;">Morphing Architecture</h2>
                 <p class="text-content">
-                    The primary limitation of traditional fixed-wing aircraft is rigidity. The FALCON wing architecture utilizes a bio-mimetic "smart skin" stretched over an articulating carbon-graphene skeleton. This allows the wings to expand for lift during takeoff and retract for speed during flight, just as a peregrine falcon tucks its wings for a dive.
+                    We believe that with only one set of wings, a pilot should be able to experience easy takeoff, efficient cruising, fast dives, and quick turns. This versatility is made possible by physically morphing the wings in flight. 
+                    <br><br>
+                    The suit is a one-piece design; the wings work in tandem with the body unit to provide a wearable, aerodynamic shell. To achieve this, the wing structure is broken into three main segments that fit the dimensional criteria of the human form while maintaining high-performance output.
                 </p>
                 <div class="media-placeholder">
                     <img src="https://images.unsplash.com/photo-1524388484152-4fe193d50893?q=80&w=1200" alt="Wing Structure">
@@ -337,13 +353,49 @@
             </div>
 
             <div class="glass-panel content-block reveal">
+                <h2 style="color:var(--primary-accent); margin-bottom:15px;">Dimensional Properties & Wing Load</h2>
                 <p class="text-content">
-                    Using pneumatic actuators woven directly into the fabric, the camber of the wing can be adjusted 500 times per second. This results in zero-stall capability at low speeds and extreme maneuverability in high-G environments.
+                    To effectively carry a human, we look to nature's most efficient glider: the Wandering Albatross. An albatross typically has a wing load of approx. 24 kg/m². Our engineering goal is to match this natural upper limit.
+                </p>
+                <p class="text-content">
+                    We calculate Wing Load as <em>Total Weight / Surface Area</em>. Assuming a maximum pilot weight of 100kg (~200lbs) and a structural craft weight of 40kg, our total load is 140kg. To maintain the target efficiency, the wings require a precise surface area.
+                </p>
+                
+                <ul class="spec-list">
+                    <li><strong>Max Pilot Weight</strong> <span>100 kg</span></li>
+                    <li><strong>Est. Craft Weight</strong> <span>40 kg</span></li>
+                    <li><strong>Total Mass</strong> <span>140 kg</span></li>
+                    <li><strong>Target Wing Load</strong> <span>25 kg/m²</span></li>
+                    <li><strong>Req. Surface Area</strong> <span>5.6 m²</span></li>
+                </ul>
+            </div>
+
+            <div class="glass-panel content-block reveal">
+                <h2 style="color:var(--primary-accent); margin-bottom:15px;">Mechanical Segmentation</h2>
+                <p class="text-content">
+                    The morphing mechanism is symmetrical, but for this breakdown, we analyze one side. Each wing half is divided into two primary sections: a stationary base and a moving array.
+                    <br><br>
+                    <strong>The Overlap System:</strong> The moving section consists of 3 pivoting "panels." Including the stationary base, there are 4 overlapping segments per wing. These segments are cut to precise geometries (Figure X) to ensure they morph under one another smoothly without mechanical binding.
                 </p>
                 <div class="media-placeholder">
-                    VIDEO: Wing Actuation Simulation
+                    FIGURE X: SEGMENT BREAKDOWN & OVERLAP ANALYSIS
                 </div>
             </div>
+
+            <div class="glass-panel content-block reveal">
+                <h2 style="color:var(--primary-accent); margin-bottom:15px;">Tension-Based Actuation</h2>
+                <p class="text-content">
+                    All 4 segments share a central joint. This pivot point creates a smooth transition during the morphing process.
+                    <br><br>
+                    <strong>Passive Extension:</strong> The system utilizes heavy-duty springs to keep the wings in a "natural resting position" of fully extended. This is a safety feature; if power is lost, the wings automatically spread to maximum glide surface area.
+                    <br><br>
+                    <strong>Active Retraction:</strong> To tuck the wings for dives or speed, user controls activate a mechanical assistance motor. This motor pulls a high-strength cable attached to the wingtip, overcoming the spring tension to retract the segments into the desired aerodynamic profile.
+                </p>
+                <div class="media-placeholder">
+                    VIDEO: Spring/Cable Joint Simulation
+                </div>
+            </div>
+
         </div>
     </div>
 
