@@ -151,15 +151,14 @@
         /* UPDATED: The SVG Path styling for DOTS */
         .neural-path-line {
             fill: none;
-            stroke: #000000; /* Black Line */
-            stroke-width: 4;
-            stroke-linecap: round; /* Makes the dashes round (dots) */
-            stroke-dasharray: 0, 15; /* 0 length dash (dot), 15 space gap */
+            stroke: #000000; /* Black Dots */
+            stroke-width: 4;     /* Size of the dot */
+            stroke-linecap: round; /* Makes them circular */
+            stroke-dasharray: 0, 10; /* 0 length dash (dot), 10 space gap (density) */
             
-            /* Neon Blue Highlight / Glow surrounding the black dots */
+            /* Neon Blue Highlight */
             filter: drop-shadow(0 0 2px var(--primary-accent)) 
-                    drop-shadow(0 0 5px var(--primary-accent))
-                    drop-shadow(0 0 8px var(--primary-accent));
+                    drop-shadow(0 0 5px var(--primary-accent));
             opacity: 0.9;
         }
 
@@ -179,11 +178,11 @@
             transition: transform 0.3s ease;
         }
 
-        /* UPDATED: Specific Class for the first, wide text box */
+        /* WIDE Text Box */
         .intro-text-box {
-            max-width: 900px !important; /* Force width */
+            max-width: 900px !important; 
             width: 90%;
-            font-size: 1.25rem; /* Larger text */
+            font-size: 1.25rem; 
             text-align: center;
         }
         
@@ -320,13 +319,20 @@
         
         <svg class="neural-layer" viewBox="0 0 100 2800" preserveAspectRatio="none">
             <path class="neural-path-line" d="
-                M 50,700        
-                L 50,1050       
-                C 50,1200 80,1200 80,1400  
-                C 80,1600 20,1600 20,1900  
-                C 20,2200 80,2200 80,2400  
-                L 80,2500       
+                M 50,1100 
+                C 50,1200 80,1200 80,1400
             " />
+
+            <path class="neural-path-line" d="
+                M 80,1650
+                C 80,1800 20,1750 20,1950
+            " />
+
+            <path class="neural-path-line" d="
+                M 20,2250
+                C 20,2350 80,2350 80,2450
+            " />
+
         </svg>
 
         <section id="hero-header">
