@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAEDALUS INNOVATION</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
-    
+
     <style>
         /* 1. VARIABLE CONTROL CENTER */
         :root {
@@ -14,10 +14,10 @@
             --glass-bg: rgba(0, 0, 0, 0.4); 
             --glass-darker: rgba(0, 0, 0, 0.7);
             --border-color: rgba(255, 255, 255, 0.25);
-            
+
             /* High-Altitude Earth Cloud Background */
             --main-bg-image: url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=1920');
-            
+
             --transition-speed: 0.8s;      
             --nav-height: 80px;
 
@@ -42,7 +42,7 @@
             background-position: center; 
             z-index: -2; 
         }
-        
+
         /* STATIC OVERLAY */
         .bg-dimmer { 
             position: fixed; 
@@ -82,11 +82,11 @@
             list-style: none;
             flex-direction: column;
             gap: 10px;
-            
+
             /* Hidden state */
             opacity: 0;
             visibility: hidden;
-            
+
             /* The Magic Delay: Transition visibility/opacity with a delay on the 'exit' */
             transition: opacity 0.3s ease, visibility 0s linear 1s; 
         }
@@ -111,7 +111,7 @@
         /* -----------------------------------------------------------
            HOME PAGE STYLES
         ----------------------------------------------------------- */
-        
+
         #hero-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         #hero-header h1 { 
             font-size: 4.5rem; letter-spacing: 12px; font-weight: 800; text-transform: uppercase; 
@@ -119,11 +119,27 @@
             text-shadow: var(--neon-glow), 2px 2px 10px rgba(0,0,0,0.5); 
         }
 
-        .main-video-section { max-width: 1000px; margin: 0 auto 150px auto; padding: 0 20px; }
+        .main-video-section { max-width: 1200px; margin: 0 auto 150px auto; padding: 0 20px; }
+        
         .video-box { 
-            position: relative; width: 100%; padding-bottom: 56.25%; background: #000; 
-            border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden;
+            position: relative; 
+            width: 100%; 
+            padding-bottom: 42.85%; /* 21:9 Aspect Ratio */
+            background: #000; 
+            border-radius: 40px; /* Rounded corners */
+            overflow: hidden;
             box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15);
+            border: none; /* No border as requested */
+        }
+
+        .video-box video { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            pointer-events: none; 
         }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
@@ -135,6 +151,18 @@
             border: 1px solid var(--border-color); overflow: hidden; 
             background: #000; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
+
+        /* NEW EDIT: This rule allows local videos in scroll rows to be visible */
+        .wide-video video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
         .wide-video iframe { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; border: 0; pointer-events: none; }
         .left-align { justify-content: flex-start; }
         .right-align { justify-content: flex-end; }
@@ -155,7 +183,7 @@
             border: 1px solid var(--border-color); filter: brightness(0.85); 
             transition: 1s; box-shadow: 0 25px 60px rgba(0,0,0,0.3);
         }
-        
+
         .feature-box { 
             position: absolute; width: 330px; padding: 2.5rem; background: var(--glass-bg); 
             backdrop-filter: blur(30px); border: 1px solid var(--border-color); border-radius: 25px; 
@@ -180,7 +208,7 @@
         /* Sub Pages Common Styles */
         .sub-wrap { max-width: 1400px; margin: 0 auto; padding: 150px 40px; }
         .glass-panel { background: var(--glass-bg); padding: 4rem; border-radius: 30px; border: 1px solid var(--border-color); backdrop-filter: blur(25px); margin-bottom: 50px; }
-        
+
         .sub-page-header {
             text-align: center; margin-bottom: 80px;
         }
@@ -219,18 +247,18 @@
             justify-content: space-between;
         }
         .spec-list li strong { color: var(--primary-accent); }
-        
+
     </style>
 </head>
 <body>
 
     <div class="bg-fixed"></div>
-    <div class="bg-dimmer"></div>
+    <div id="dimmer" class="bg-dimmer"></div>
 
     <nav>
         <ul>
             <li><a onclick="showPage('home-page')">DAEDALUS</a></li>
-            
+
             <li>
                 <a href="#">DESIGN</a>
                 <ul class="dropdown-menu">
@@ -255,32 +283,41 @@
     </nav>
 
     <div id="home-page" class="page active">
-        
+
         <section id="hero-header">
             <h1>Humans have always dreamed of flight</h1>
         </section>
 
         <div class="main-video-section">
             <div class="video-box">
-                <iframe src="https://www.youtube.com/embed/PaOyrD1DGp4?autoplay=1&mute=1&loop=1&playlist=PaOyrD1DGp4&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                <video autoplay muted loop playsinline>
+                    <source src="Videos/Bird_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
 
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <iframe src="https://www.youtube.com/embed/yq-0EOn7vSg?autoplay=1&mute=1&loop=1&playlist=yq-0EOn7vSg&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
+                <video autoplay muted loop playsinline>
+                    <source src="Videos/Planes+Helicopters.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
             </div>
         </div>
 
         <div class="scroll-video-row right-align reveal">
             <div class="wide-video">
-                <iframe src="https://www.youtube.com/embed/m0H846_mDQE?autoplay=1&mute=1&loop=1&playlist=m0H846_mDQE&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
+                 <video autoplay muted loop playsinline>
+                     <source src="Videos/Gliders+Suits.mp4" type="video/mp4">
+                     Your browser does not support the video tag.
             </div>
         </div>
 
         <div class="scroll-video-row left-align reveal">
             <div class="wide-video">
-                <iframe src="https://www.youtube.com/embed/FzhREYOK0oo?autoplay=1&mute=1&loop=1&playlist=FzhREYOK0oo&controls=0&modestbranding=1&rel=0" frameborder="0"></iframe>
+                <video autoplay muted loop playsinline>
+                     <source src="" type="video/mp4">
+                     Your browser does not support the video tag.
             </div>
         </div>
 
@@ -339,7 +376,7 @@
                 <h1>WINGS</h1>
                 <p style="font-size:1.5rem;">One Wing. Every Function.</p>
             </div>
-            
+
             <div class="glass-panel content-block reveal">
                 <h2 style="color:var(--primary-accent); margin-bottom:15px;">Morphing Architecture</h2>
                 <p class="text-content">
@@ -360,7 +397,7 @@
                 <p class="text-content">
                     We calculate Wing Load as <em>Total Weight / Surface Area</em>. Assuming a maximum pilot weight of 100kg (~200lbs) and a structural craft weight of 40kg, our total load is 140kg. To maintain the target efficiency, the wings require a precise surface area.
                 </p>
-                
+
                 <ul class="spec-list">
                     <li><strong>Max Pilot Weight</strong> <span>100 kg</span></li>
                     <li><strong>Est. Craft Weight</strong> <span>40 kg</span></li>
@@ -427,7 +464,7 @@
                 <p class="text-content">
                     A battery pack will be on the back (between the user and parachute safety measures) of the suit to power this turbine.
                 </p>
-                
+
                 <ul class="spec-list">
                     <li><strong>Thrust Output</strong> <span>X Newtons</span></li>
                     <li><strong>Run Time</strong> <span>X Minutes</span></li>
@@ -616,3 +653,6 @@
     </script>
 </body>
 </html>
+
+
+
